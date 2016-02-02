@@ -120,6 +120,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		26D4CCC61C60C0F200319386 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				26F65C931C6010DD005E4A4F /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		26F65C781C6010DC005E4A4F = {
 			isa = PBXGroup;
 			children = (
@@ -152,7 +160,7 @@
 				26F65C8E1C6010DC005E4A4F /* Assets.xcassets */,
 				261700101C6057C00053F9AB /* Media.xcassets */,
 				26F65C901C6010DC005E4A4F /* LaunchScreen.storyboard */,
-				26F65C931C6010DD005E4A4F /* Info.plist */,
+				26D4CCC61C60C0F200319386 /* Supporting Files */,
 				26F65C8B1C6010DC005E4A4F /* Enabled.xcdatamodeld */,
 			);
 			path = Enabled;
