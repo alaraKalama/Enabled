@@ -67,4 +67,8 @@ class SearchResultController: UITableViewController {
             task.resume()
     }
 
+    func reloadDataWithArray(array:[String]){
+        self.searchResults = array
+        self.tableView.reloadData()
+    }
 }

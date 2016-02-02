@@ -14,11 +14,12 @@ import GoogleMaps
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     let Google_API_Key = "AIzaSyBXk-lst-euuRccRP86_Yxd2BPXAsACmK4"
+    let Google_Places_API_Key = "AIzaSyCMorcNiOJDU1TZVpOMnxQXSWO8APycznc"
     var window: UIWindow?
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        GMSServices.provideAPIKey(Google_API_Key)
+        GMSServices.provideAPIKey(Google_Places_API_Key)
         return true
     }
 

@@ -82,10 +82,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
         let searchController = UISearchController(searchResultsController: searchResultController)
         searchController.searchBar.delegate = self
         self.presentViewController(searchController, animated: true, completion: nil)
-        //whole new view code
-        //let acController = GMSAutocompleteViewController()
-        //acController.delegate = self
-        //self.presentViewController(acController, animated: true, completion: nil)
     }
     
     
@@ -107,25 +103,22 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
             marker.map = self.viewMap
         }
     }
+    
+    func searchBar(searchBar: UISearchBar,
+        textDidChange searchText: String){
+            
+            let placesClient = GMSPlacesClient()
+            placesClient.autocompleteQuery(searchText, bounds: nil, filter: nil) { (results, error:NSError?) -> Void in
+                self.resultsArray.removeAll()
+                if results == nil {
+                    return
+                }
+                for result in results!{
+                    if let result = result as? GMSAutocompletePrediction{
+                        self.resultsArray.append(result.attributedFullText.string)
+                    }
+                }
+                self.searchResultController.reloadDataWithArray(self.resultsArray)
+            }
+    }
 }
-
-//extension MapViewController: GMSAutocompleteViewControllerDelegate {
-    
-//    func viewController(viewController: GMSAutocompleteViewController!, didAutocompleteWithPlace place: GMSPlace!) {
-        // The user has selected a place.
-  //      self.dismissViewControllerAnimated(true, completion: nil)
-    //}
-    
-   // func viewController(viewController: GMSAutocompleteViewController!, didAutocompleteWithError error: NSError!) {
-   //     self.dismissViewControllerAnimated(true, completion: nil)
-   // }
-    
-   // func wasCancelled(viewController: GMSAutocompleteViewController!) {
-   //     self.dismissViewControllerAnimated(true, completion: nil)
-   // }
-    
-   // func viewController(viewController: GMSAutocompleteViewController!, didFailAutocompleteWithError error: NSError!) {
-        // TODO: handle the error.
-    //    print("Error: ", error.description)
-    //}
-//}
