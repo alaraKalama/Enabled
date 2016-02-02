@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		261700111C6057C00053F9AB /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 261700101C6057C00053F9AB /* Media.xcassets */; };
 		263692211C60154800167EBE /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 263692201C60154800167EBE /* AVFoundation.framework */; };
 		263692231C60154E00167EBE /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 263692221C60154E00167EBE /* CoreData.framework */; };
 		263692251C60155400167EBE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 263692241C60155400167EBE /* CoreLocation.framework */; };
@@ -49,6 +50,7 @@
 
 /* Begin PBXFileReference section */
 		2617000E1C6015E60053F9AB /* Enabled-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Enabled-Bridging-Header.h"; sourceTree = "<group>"; };
+		261700101C6057C00053F9AB /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		263692201C60154800167EBE /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		263692221C60154E00167EBE /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		263692241C60155400167EBE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -148,6 +150,7 @@
 				26F65C861C6010DC005E4A4F /* ViewController.swift */,
 				26F65C881C6010DC005E4A4F /* Main.storyboard */,
 				26F65C8E1C6010DC005E4A4F /* Assets.xcassets */,
+				261700101C6057C00053F9AB /* Media.xcassets */,
 				26F65C901C6010DC005E4A4F /* LaunchScreen.storyboard */,
 				26F65C931C6010DD005E4A4F /* Info.plist */,
 				26F65C8B1C6010DC005E4A4F /* Enabled.xcdatamodeld */,
@@ -314,6 +317,7 @@
 			files = (
 				26F65C921C6010DC005E4A4F /* LaunchScreen.storyboard in Resources */,
 				26F65C8F1C6010DC005E4A4F /* Assets.xcassets in Resources */,
+				261700111C6057C00053F9AB /* Media.xcassets in Resources */,
 				26F65C8A1C6010DC005E4A4F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

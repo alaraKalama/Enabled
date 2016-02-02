@@ -22,17 +22,17 @@
                                 <items>
                                     <barButtonItem title="logo" id="24v-yi-s8K"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="ytq-DA-pPY"/>
-                                    <barButtonItem title="add" id="Mei-TI-ghL">
+                                    <barButtonItem image="Add" id="Mei-TI-ghL">
                                         <connections>
                                             <action selector="addPlace:" destination="vXZ-lx-hvc" id="Ldm-fn-0Bq"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="find" id="i2x-Qa-FXc" userLabel="find">
+                                    <barButtonItem image="Find" id="i2x-Qa-FXc" userLabel="find">
                                         <connections>
                                             <action selector="findAddress:" destination="vXZ-lx-hvc" id="4Js-uF-G1R"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="search" id="N6W-o5-13R">
+                                    <barButtonItem image="Search" id="N6W-o5-13R">
                                         <connections>
                                             <action selector="searchNearbyPlaces:" destination="vXZ-lx-hvc" id="AOQ-zK-rg6"/>
                                         </connections>
@@ -55,10 +55,24 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="491"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mogasam.org" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yl9-MI-fE5">
+                                <rect key="frame" x="503" y="577" width="77" height="15"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                <color key="textColor" red="0.0" green="0.50196081399917603" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="visit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PEl-Vl-btE">
+                                <rect key="frame" x="471" y="577" width="24" height="15"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Yl9-MI-fE5" firstAttribute="leading" secondItem="PEl-Vl-btE" secondAttribute="trailing" constant="8" id="2Z8-lo-vac"/>
                             <constraint firstItem="BlT-Fr-6kQ" firstAttribute="trailing" secondItem="asC-5R-Swi" secondAttribute="trailing" id="5K7-AX-bE9"/>
+                            <constraint firstItem="Yl9-MI-fE5" firstAttribute="leading" secondItem="asC-5R-Swi" secondAttribute="trailing" constant="-97" id="6Ox-xo-A6R"/>
                             <constraint firstItem="asC-5R-Swi" firstAttribute="leading" secondItem="NPd-AN-kMi" secondAttribute="leading" id="7du-UF-ibD"/>
                             <constraint firstAttribute="trailing" secondItem="asC-5R-Swi" secondAttribute="trailing" id="HOG-vq-hpY"/>
                             <constraint firstItem="asC-5R-Swi" firstAttribute="top" secondItem="BlT-Fr-6kQ" secondAttribute="bottom" constant="1" id="JGK-GO-yU8"/>
@@ -66,7 +80,9 @@
                             <constraint firstItem="4sy-1Y-r3w" firstAttribute="trailing" secondItem="BlT-Fr-6kQ" secondAttribute="trailing" id="WeT-Sk-t0J"/>
                             <constraint firstItem="4sy-1Y-r3w" firstAttribute="leading" secondItem="BlT-Fr-6kQ" secondAttribute="leading" id="Xy9-ta-N4z"/>
                             <constraint firstItem="BlT-Fr-6kQ" firstAttribute="top" secondItem="4sy-1Y-r3w" secondAttribute="bottom" id="YCN-Yq-hOC"/>
+                            <constraint firstItem="PEl-Vl-btE" firstAttribute="centerY" secondItem="Yl9-MI-fE5" secondAttribute="centerY" id="Yr2-df-57x"/>
                             <constraint firstItem="4sy-1Y-r3w" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="d4y-Ym-Rr4"/>
+                            <constraint firstItem="Yl9-MI-fE5" firstAttribute="top" secondItem="asC-5R-Swi" secondAttribute="bottom" constant="-23" id="hkX-ue-XrE"/>
                             <constraint firstItem="BlT-Fr-6kQ" firstAttribute="leading" secondItem="asC-5R-Swi" secondAttribute="leading" id="paR-nD-URB"/>
                         </constraints>
                     </view>
@@ -76,6 +92,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="403" y="329"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Add" width="35" height="35"/>
+        <image name="Find" width="25" height="25"/>
+        <image name="Search" width="50" height="50"/>
+    </resources>
 </document>
