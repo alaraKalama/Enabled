@@ -18,6 +18,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     var locationManager = CLLocationManager()
     var didFindMyLocation = false
+    var locationMarker: GMSMarker!
     
     
     override func viewDidLoad() {
@@ -33,6 +34,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         // displaying the map content
         //let 📷: GMSCameraPosition = GMSCameraPosition.cameraWithLatitude(48.857165, longitude: 2.354613, zoom: 8.0)
         //viewMap.camera = 📷
+    }
+    
+    func setupLocationMarker(coordinate: CLLocationCoordinate2D) {
+        locationMarker = GMSMarker(position: coordinate)
+        locationMarker.map = viewMap
     }
     
     override func didReceiveMemoryWarning() {
