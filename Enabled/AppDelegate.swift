@@ -12,11 +12,12 @@ import CoreData
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    let Google_API_Key = "AIzaSyBXk-lst-euuRccRP86_Yxd2BPXAsACmK4"
     var window: UIWindow?
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        GMSServices.provideAPIKey("AIzaSyCTeYHjqeFoIW_Ycj4YnhNs9L6mTsdEu3s")
+        GMSServices.provideAPIKey(Google_API_Key)
         return true
     }
 

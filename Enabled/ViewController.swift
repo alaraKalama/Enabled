@@ -19,8 +19,9 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //let camera: GMSCameraPosition = GMSCameraPosition.cameraWithLatitude(48.857165, longitude: 2.354613, zoom: 8.0)
-        //viewMap.camera = camera
+        self.view.layoutIfNeeded()
+        let 📷: GMSCameraPosition = GMSCameraPosition.cameraWithLatitude(48.857165, longitude: 2.354613, zoom: 8.0)
+        viewMap.camera = 📷
     }
     
     override func didReceiveMemoryWarning() {
@@ -31,7 +32,7 @@ class ViewController: UIViewController {
     
     // MARK: IBAction method implementation
     
-    @IBAction func changeMapType(sender: AnyObject) {
+    @IBAction func searchNearbyPlaces(sender: AnyObject) {
         
     }
     
@@ -41,15 +42,9 @@ class ViewController: UIViewController {
     }
     
     
-    @IBAction func createRoute(sender: AnyObject) {
+    @IBAction func addPlace(sender: AnyObject) {
         
     }
-    
-    
-    @IBAction func changeTravelMode(sender: AnyObject) {
-        
-    }
-    
     
 }
 
