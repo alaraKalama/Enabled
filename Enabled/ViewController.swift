@@ -23,14 +23,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.layoutIfNeeded()
-        //get current location
+        
+        //ask for permission to access current location
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
-        //viewMap.addObserver(self, forKeyPath: "myLocation", options: <#T##NSKeyValueObservingOptions#>, context: nil)
-
         
-        let 📷: GMSCameraPosition = GMSCameraPosition.cameraWithLatitude(48.857165, longitude: 2.354613, zoom: 8.0)
-        viewMap.camera = 📷
+        viewMap.addObserver(self, forKeyPath: "myLocation", options: NSKeyValueObservingOptions.New , context: nil)
+
+        // displaying the map content
+        //let 📷: GMSCameraPosition = GMSCameraPosition.cameraWithLatitude(48.857165, longitude: 2.354613, zoom: 8.0)
+        //viewMap.camera = 📷
     }
     
     override func didReceiveMemoryWarning() {
@@ -46,11 +48,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if !didFindMyLocation {
-            
-            //let myLocation: CLLocation = change[NSKeyValueChangeNewKey] as CLLocation
-            //viewMap.camera = GMSCameraPosition.cameraWithTarget(myLocation.coordinate, zoom: 10.0)
+            let myLocation: CLLocation = change![NSKeyValueChangeNewKey] as! CLLocation
+            viewMap.camera = GMSCameraPosition.cameraWithTarget(myLocation.coordinate, zoom: 15.0)
             viewMap.settings.myLocationButton = true
-            
             didFindMyLocation = true
         }
     }
