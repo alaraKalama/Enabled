@@ -9,7 +9,7 @@
 import UIKit
 import GoogleMaps
 
-class MapViewController: UIViewController, CLLocationManagerDelegate {
+class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBarDelegate, LocateOnTheMap {
     
     @IBOutlet weak var viewMap: GMSMapView!
     
@@ -20,6 +20,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     var locationManager = CLLocationManager()
     var didFindMyLocation = false
     var locationMarker: GMSMarker!
+    var searchResultController:SearchResultController!
+    var resultsArray = [String]()
     
     
     override func viewDidLoad() {
@@ -62,16 +64,26 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
+    //autocomplete
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        searchResultController = SearchResultController()
+        searchResultController.delegate = self
+    }
+    
     // MARK: IBAction method implementation
     
     @IBAction func searchNearbyPlaces(sender: AnyObject) {
         print("Search")
     }
     
-    
     @IBAction func findAddress(sender: AnyObject) {
         print("find")
-        let acController = GMSAutocompleteViewController()
+        let searchController = UISearchController(searchResultsController: searchResultController)
+        searchController.searchBar.delegate = self
+        self.presentViewController(searchController, animated: true, completion: nil)
+        //whole new view code
+        //let acController = GMSAutocompleteViewController()
         //acController.delegate = self
         //self.presentViewController(acController, animated: true, completion: nil)
     }
@@ -82,4 +94,38 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
 
     }
     
+    func locateWithLongitude(lon: Double, andLatitude lat: Double, andTitle title: String) {
+        
+        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            let position = CLLocationCoordinate2DMake(lat, lon)
+            let marker = GMSMarker(position: position)
+            
+            let camera  = GMSCameraPosition.cameraWithLatitude(lat, longitude: lon, zoom: 10)
+            self.viewMap.camera = camera
+            
+            marker.title = title
+            marker.map = self.viewMap
+        }
+    }
 }
+
+//extension MapViewController: GMSAutocompleteViewControllerDelegate {
+    
+//    func viewController(viewController: GMSAutocompleteViewController!, didAutocompleteWithPlace place: GMSPlace!) {
+        // The user has selected a place.
+  //      self.dismissViewControllerAnimated(true, completion: nil)
+    //}
+    
+   // func viewController(viewController: GMSAutocompleteViewController!, didAutocompleteWithError error: NSError!) {
+   //     self.dismissViewControllerAnimated(true, completion: nil)
+   // }
+    
+   // func wasCancelled(viewController: GMSAutocompleteViewController!) {
+   //     self.dismissViewControllerAnimated(true, completion: nil)
+   // }
+    
+   // func viewController(viewController: GMSAutocompleteViewController!, didFailAutocompleteWithError error: NSError!) {
+        // TODO: handle the error.
+    //    print("Error: ", error.description)
+    //}
+//}

@@ -20,6 +20,7 @@
 		263692331C60158B00167EBE /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 263692321C60158B00167EBE /* OpenGLES.framework */; };
 		263692351C60159100167EBE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 263692341C60159100167EBE /* QuartzCore.framework */; };
 		263692371C60159800167EBE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 263692361C60159800167EBE /* SystemConfiguration.framework */; };
+		266BB5F91C616796000143FB /* SearchResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266BB5F81C616796000143FB /* SearchResultController.swift */; };
 		26D4CCD11C61013500319386 /* model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D4CCD01C61013500319386 /* model.swift */; };
 		26D4CCD71C61018200319386 /* view.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D4CCD61C61018200319386 /* view.swift */; };
 		26D4CCDD1C61023C00319386 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D4CCDC1C61023C00319386 /* MapViewController.swift */; };
@@ -66,6 +67,7 @@
 		263692321C60158B00167EBE /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		263692341C60159100167EBE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		263692361C60159800167EBE /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		266BB5F81C616796000143FB /* SearchResultController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultController.swift; sourceTree = "<group>"; };
 		26D4CCD01C61013500319386 /* model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = model.swift; path = Model/model.swift; sourceTree = "<group>"; };
 		26D4CCD61C61018200319386 /* view.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = view.swift; path = View/view.swift; sourceTree = "<group>"; };
 		26D4CCDC1C61023C00319386 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				26D4CCDC1C61023C00319386 /* MapViewController.swift */,
+				266BB5F81C616796000143FB /* SearchResultController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -448,6 +451,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				266BB5F91C616796000143FB /* SearchResultController.swift in Sources */,
 				26D4CCDD1C61023C00319386 /* MapViewController.swift in Sources */,
 				26D4CCD71C61018200319386 /* view.swift in Sources */,
 				26D4CCD11C61013500319386 /* model.swift in Sources */,
