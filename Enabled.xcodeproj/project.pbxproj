@@ -22,7 +22,8 @@
 		263692371C60159800167EBE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 263692361C60159800167EBE /* SystemConfiguration.framework */; };
 		26D4CCD11C61013500319386 /* model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D4CCD01C61013500319386 /* model.swift */; };
 		26D4CCD71C61018200319386 /* view.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D4CCD61C61018200319386 /* view.swift */; };
-		26D4CCDD1C61023C00319386 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D4CCDC1C61023C00319386 /* ViewController.swift */; };
+		26D4CCDD1C61023C00319386 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D4CCDC1C61023C00319386 /* MapViewController.swift */; };
+		26D4CCE01C61534A00319386 /* MapTasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D4CCDF1C61534A00319386 /* MapTasks.swift */; };
 		26F65C851C6010DC005E4A4F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F65C841C6010DC005E4A4F /* AppDelegate.swift */; };
 		26F65C8A1C6010DC005E4A4F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26F65C881C6010DC005E4A4F /* Main.storyboard */; };
 		26F65C8D1C6010DC005E4A4F /* Enabled.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 26F65C8B1C6010DC005E4A4F /* Enabled.xcdatamodeld */; };
@@ -67,7 +68,8 @@
 		263692361C60159800167EBE /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		26D4CCD01C61013500319386 /* model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = model.swift; path = Model/model.swift; sourceTree = "<group>"; };
 		26D4CCD61C61018200319386 /* view.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = view.swift; path = View/view.swift; sourceTree = "<group>"; };
-		26D4CCDC1C61023C00319386 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		26D4CCDC1C61023C00319386 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		26D4CCDF1C61534A00319386 /* MapTasks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapTasks.swift; path = Tasks/MapTasks.swift; sourceTree = "<group>"; };
 		26F65C811C6010DC005E4A4F /* Enabled.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Enabled.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26F65C841C6010DC005E4A4F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		26F65C891C6010DC005E4A4F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -143,7 +145,7 @@
 		26D4CCD51C61017100319386 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				26D4CCDC1C61023C00319386 /* ViewController.swift */,
+				26D4CCDC1C61023C00319386 /* MapViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -163,6 +165,14 @@
 				26F65C901C6010DC005E4A4F /* LaunchScreen.storyboard */,
 			);
 			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		26D4CCDE1C61533100319386 /* Tasks */ = {
+			isa = PBXGroup;
+			children = (
+				26D4CCDF1C61534A00319386 /* MapTasks.swift */,
+			);
+			name = Tasks;
 			sourceTree = "<group>";
 		};
 		26F65C781C6010DC005E4A4F = {
@@ -191,6 +201,7 @@
 		26F65C831C6010DC005E4A4F /* Enabled */ = {
 			isa = PBXGroup;
 			children = (
+				26D4CCDE1C61533100319386 /* Tasks */,
 				26F65C841C6010DC005E4A4F /* AppDelegate.swift */,
 				26D4CCD21C61014C00319386 /* Model */,
 				26D4CCD91C6101A200319386 /* Storyboards */,
@@ -437,9 +448,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				26D4CCDD1C61023C00319386 /* ViewController.swift in Sources */,
+				26D4CCDD1C61023C00319386 /* MapViewController.swift in Sources */,
 				26D4CCD71C61018200319386 /* view.swift in Sources */,
 				26D4CCD11C61013500319386 /* model.swift in Sources */,
+				26D4CCE01C61534A00319386 /* MapTasks.swift in Sources */,
 				26F65C851C6010DC005E4A4F /* AppDelegate.swift in Sources */,
 				26F65C8D1C6010DC005E4A4F /* Enabled.xcdatamodeld in Sources */,
 			);

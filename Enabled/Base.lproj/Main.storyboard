@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="i2y-7N-IK7">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Map View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="Enabled" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="MapViewController" customModule="Enabled" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -17,82 +18,83 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4sy-1Y-r3w">
-                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
-                                <items>
-                                    <barButtonItem image="Image" id="24v-yi-s8K"/>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="ytq-DA-pPY"/>
-                                    <barButtonItem image="Add" id="Mei-TI-ghL">
-                                        <connections>
-                                            <action selector="addPlace:" destination="vXZ-lx-hvc" id="Ldm-fn-0Bq"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem image="Find" id="i2x-Qa-FXc" userLabel="find">
-                                        <connections>
-                                            <action selector="findAddress:" destination="vXZ-lx-hvc" id="4Js-uF-G1R"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem image="Search" id="N6W-o5-13R">
-                                        <connections>
-                                            <action selector="searchNearbyPlaces:" destination="vXZ-lx-hvc" id="AOQ-zK-rg6"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                                <color key="tintColor" red="0.2039215714" green="0.28627452250000002" blue="0.36862745879999997" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="barTintColor" red="0.9529411793" green="0.61176472900000001" blue="0.070588238540000001" alpha="1" colorSpace="calibratedRGB"/>
-                            </toolbar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="asC-5R-Swi">
-                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
-                                <color key="backgroundColor" red="0.9529411793" green="0.61176472900000001" blue="0.070588238540000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="hXA-1c-ome"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
-                                <color key="textColor" red="0.2039215714" green="0.28627452250000002" blue="0.36862745879999997" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BlT-Fr-6kQ" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="64" width="600" height="491"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BlT-Fr-6kQ" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mogasam.org" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yl9-MI-fE5">
-                                <rect key="frame" x="503" y="577" width="77" height="15"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
-                                <color key="textColor" red="0.0" green="0.50196081399917603" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="visit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PEl-Vl-btE">
-                                <rect key="frame" x="471" y="577" width="24" height="15"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Yl9-MI-fE5" firstAttribute="leading" secondItem="PEl-Vl-btE" secondAttribute="trailing" constant="8" id="2Z8-lo-vac"/>
-                            <constraint firstItem="BlT-Fr-6kQ" firstAttribute="trailing" secondItem="asC-5R-Swi" secondAttribute="trailing" id="5K7-AX-bE9"/>
-                            <constraint firstItem="Yl9-MI-fE5" firstAttribute="leading" secondItem="asC-5R-Swi" secondAttribute="trailing" constant="-97" id="6Ox-xo-A6R"/>
-                            <constraint firstItem="asC-5R-Swi" firstAttribute="leading" secondItem="NPd-AN-kMi" secondAttribute="leading" id="7du-UF-ibD"/>
-                            <constraint firstAttribute="trailing" secondItem="asC-5R-Swi" secondAttribute="trailing" id="HOG-vq-hpY"/>
-                            <constraint firstItem="asC-5R-Swi" firstAttribute="top" secondItem="BlT-Fr-6kQ" secondAttribute="bottom" constant="1" id="JGK-GO-yU8"/>
-                            <constraint firstItem="asC-5R-Swi" firstAttribute="bottom" secondItem="2fi-mo-0CV" secondAttribute="top" id="Sj7-N3-5im"/>
-                            <constraint firstItem="4sy-1Y-r3w" firstAttribute="trailing" secondItem="BlT-Fr-6kQ" secondAttribute="trailing" id="WeT-Sk-t0J"/>
-                            <constraint firstItem="4sy-1Y-r3w" firstAttribute="leading" secondItem="BlT-Fr-6kQ" secondAttribute="leading" id="Xy9-ta-N4z"/>
-                            <constraint firstItem="BlT-Fr-6kQ" firstAttribute="top" secondItem="4sy-1Y-r3w" secondAttribute="bottom" id="YCN-Yq-hOC"/>
-                            <constraint firstItem="PEl-Vl-btE" firstAttribute="centerY" secondItem="Yl9-MI-fE5" secondAttribute="centerY" id="Yr2-df-57x"/>
-                            <constraint firstItem="4sy-1Y-r3w" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="d4y-Ym-Rr4"/>
-                            <constraint firstItem="Yl9-MI-fE5" firstAttribute="top" secondItem="asC-5R-Swi" secondAttribute="bottom" constant="-23" id="hkX-ue-XrE"/>
-                            <constraint firstItem="BlT-Fr-6kQ" firstAttribute="leading" secondItem="asC-5R-Swi" secondAttribute="leading" id="paR-nD-URB"/>
+                            <constraint firstItem="BlT-Fr-6kQ" firstAttribute="leading" secondItem="NPd-AN-kMi" secondAttribute="leading" id="HyG-XJ-zhk"/>
+                            <constraint firstItem="BlT-Fr-6kQ" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="LMa-Gn-EL5"/>
+                            <constraint firstAttribute="trailing" secondItem="BlT-Fr-6kQ" secondAttribute="trailing" id="M7y-uW-agi"/>
+                            <constraint firstItem="BlT-Fr-6kQ" firstAttribute="leading" secondItem="NPd-AN-kMi" secondAttribute="leading" id="YZ4-hQ-Eqr"/>
+                            <constraint firstItem="BlT-Fr-6kQ" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="ZcR-zK-Xib"/>
+                            <constraint firstAttribute="trailing" secondItem="BlT-Fr-6kQ" secondAttribute="trailing" id="bOV-Xt-8Uh"/>
+                            <constraint firstAttribute="trailing" secondItem="BlT-Fr-6kQ" secondAttribute="trailing" id="lZV-ZD-9gX"/>
+                            <constraint firstItem="BlT-Fr-6kQ" firstAttribute="leading" secondItem="NPd-AN-kMi" secondAttribute="leading" id="tIV-te-Wta"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="BlT-Fr-6kQ" secondAttribute="bottom" id="xbm-v0-fvX"/>
                         </constraints>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="QU5-eD-7FV"/>
+                        <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="zc8-pT-i07"/>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" id="LF0-KK-2f7">
+                        <barButtonItem key="leftBarButtonItem" image="Image" id="dRG-Rb-Tr6"/>
+                        <rightBarButtonItems>
+                            <barButtonItem image="Search" id="jSE-JK-rg3">
+                                <connections>
+                                    <action selector="findAddress:" destination="vXZ-lx-hvc" id="QBh-VI-dEI"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="Find" id="TEo-Yw-JOp">
+                                <connections>
+                                    <action selector="searchNearbyPlaces:" destination="vXZ-lx-hvc" id="t68-A3-Qcp"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="Add" id="IFa-x3-Xlf">
+                                <connections>
+                                    <action selector="addPlace:" destination="vXZ-lx-hvc" id="0PI-Ia-wi6"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="viewMap" destination="BlT-Fr-6kQ" id="9y2-ZP-r2j"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="403" y="329"/>
+            <point key="canvasLocation" x="516" y="313"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="7X8-QE-bng">
+            <objects>
+                <navigationController toolbarHidden="NO" id="i2y-7N-IK7" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="z7u-cF-dJp">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.9529411793" green="0.61176472900000001" blue="0.070588238540000001" alpha="0.5" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.9529411793" green="0.61176472900000001" blue="0.070588238540000001" alpha="0.5" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="0.9529411793" green="0.61176472900000001" blue="0.070588238540000001" alpha="0.57999999999999996" colorSpace="calibratedRGB"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Wor-pI-xJS">
+                        <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.9529411793" green="0.61176472900000001" blue="0.070588238540000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.9529411793" green="0.61176472900000001" blue="0.070588238540000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="0fd-0x-JLE"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yvP-1h-ged" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-225" y="313"/>
         </scene>
     </scenes>
     <resources>
