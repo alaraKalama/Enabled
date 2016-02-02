@@ -29,8 +29,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         //viewMap.addObserver(self, forKeyPath: "myLocation", options: <#T##NSKeyValueObservingOptions#>, context: nil)
 
         
-        //let 📷: GMSCameraPosition = GMSCameraPosition.cameraWithLatitude(48.857165, longitude: 2.354613, zoom: 8.0)
-        //viewMap.camera = 📷
+        let 📷: GMSCameraPosition = GMSCameraPosition.cameraWithLatitude(48.857165, longitude: 2.354613, zoom: 8.0)
+        viewMap.camera = 📷
     }
     
     override func didReceiveMemoryWarning() {
