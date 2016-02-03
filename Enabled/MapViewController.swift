@@ -19,6 +19,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
     
     var locationManager = CLLocationManager()
     var didFindMyLocation = false
+    var placePicker: GMSPlacePicker!
+    var latitude: Double!
+    var longitude: Double!
     var locationMarker: GMSMarker!
     var searchResultController:SearchResultController!
     var resultsArray = [String]()
@@ -31,15 +34,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
         //ask for permission to access current location
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
-        
-        viewMap.addObserver(self, forKeyPath: "myLocation", options: NSKeyValueObservingOptions.New , context: nil)
-
-        // displaying the map content
-        //let 📷: GMSCameraPosition = GMSCameraPosition.cameraWithLatitude(48.857165, longitude: 2.354613, zoom: 8.0)
-        //viewMap.camera = 📷
+        locationManager.startUpdatingLocation()
     }
     
     func setupLocationMarker(coordinate: CLLocationCoordinate2D) {
+        
         locationMarker = GMSMarker(position: coordinate)
         locationMarker.map = viewMap
     }
@@ -55,10 +54,18 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
         }
     }
     
+    func locationManager(manager: CLLocationManager,
+        didFailWithError error: NSError){
+            
+            print("An error occurred while tracking location changes : \(error.description)")
+    }
+    
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if !didFindMyLocation {
             let myLocation: CLLocation = change![NSKeyValueChangeNewKey] as! CLLocation
             viewMap.camera = GMSCameraPosition.cameraWithTarget(myLocation.coordinate, zoom: 16.0)
+            self.latitude = myLocation.coordinate.latitude
+            self.longitude = myLocation.coordinate.longitude
             viewMap.settings.myLocationButton = true
             didFindMyLocation = true
         }
@@ -67,6 +74,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
     //autocomplete
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        viewMap.animateToZoom(25.0)
+        viewMap.addObserver(self, forKeyPath: "myLocation", options: NSKeyValueObservingOptions.New , context: nil)
         searchResultController = SearchResultController()
         searchResultController.delegate = self
     }
@@ -75,6 +84,32 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
     
     @IBAction func searchNearbyPlaces(sender: AnyObject) {
         print("Search")
+        let center = CLLocationCoordinate2DMake(self.latitude, self.longitude)
+        let northEast = CLLocationCoordinate2DMake(center.latitude + 0.001, center.longitude + 0.001)
+        let southWest = CLLocationCoordinate2DMake(center.latitude - 0.001, center.longitude - 0.001)
+        let viewport = GMSCoordinateBounds(coordinate: northEast, coordinate: southWest)
+        let config = GMSPlacePickerConfig(viewport: viewport)
+        self.placePicker = GMSPlacePicker(config: config)
+        
+        placePicker.pickPlaceWithCallback{(place: GMSPlace?, error: NSError?) ->
+        Void in
+            if let error = error {
+            print("Error occured: \(error.localizedDescription)")
+            return
+            }
+            
+            if let place = place {
+                let coordinates = CLLocationCoordinate2DMake(place.coordinate.latitude, place.coordinate.longitude)
+                let marker = GMSMarker(position: coordinates)
+                marker.title = place.name
+                marker.map = self.viewMap
+                self.viewMap.animateToLocation(coordinates)
+                self.viewMap.animateToZoom(15.0)
+            }
+            else {
+                print("No place was selected")
+            }
+        }
     }
     
     @IBAction func findAddress(sender: AnyObject) {
