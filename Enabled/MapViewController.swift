@@ -37,29 +37,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
         locationManager.startUpdatingLocation()
     }
     
-    func setupLocationMarker(coordinate: CLLocationCoordinate2D) {
-        
-        locationMarker = GMSMarker(position: coordinate)
-        locationMarker.map = viewMap
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        if status == CLAuthorizationStatus.AuthorizedWhenInUse {
-            viewMap.myLocationEnabled = true
-        }
-    }
-    
-    func locationManager(manager: CLLocationManager,
-        didFailWithError error: NSError){
-            
-            print("An error occurred while tracking location changes : \(error.description)")
-    }
-    
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if !didFindMyLocation {
             let myLocation: CLLocation = change![NSKeyValueChangeNewKey] as! CLLocation
@@ -80,8 +57,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
         searchResultController.delegate = self
     }
     
-    // MARK: IBAction method implementation
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
     
+    // MARK: IBAction method implementation
     @IBAction func searchNearbyPlaces(sender: AnyObject) {
         print("Search")
         let center = CLLocationCoordinate2DMake(self.latitude, self.longitude)
@@ -92,16 +73,21 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
         self.placePicker = GMSPlacePicker(config: config)
         
         placePicker.pickPlaceWithCallback{(place: GMSPlace?, error: NSError?) ->
-        Void in
+            Void in
             if let error = error {
-            print("Error occured: \(error.localizedDescription)")
-            return
+                print("Error occured: \(error.localizedDescription)")
+                return
             }
             
             if let place = place {
                 let coordinates = CLLocationCoordinate2DMake(place.coordinate.latitude, place.coordinate.longitude)
                 let marker = GMSMarker(position: coordinates)
                 marker.title = place.name
+                //TODO: Add a picked place to Firebase
+                print(place.placeID)
+                print(place.priceLevel)
+                print(place.description)
+                print(place.openNowStatus)
                 marker.map = self.viewMap
                 self.viewMap.animateToLocation(coordinates)
                 self.viewMap.animateToZoom(15.0)
@@ -116,13 +102,31 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
         print("find")
         let searchController = UISearchController(searchResultsController: searchResultController)
         searchController.searchBar.delegate = self
+        //TODO: Add a picked place to Firebase
         self.presentViewController(searchController, animated: true, completion: nil)
     }
     
-    
     @IBAction func addPlace(sender: AnyObject) {
         print("add")
-
+        
+    }
+    
+    func setupLocationMarker(coordinate: CLLocationCoordinate2D) {
+        
+        locationMarker = GMSMarker(position: coordinate)
+        locationMarker.map = viewMap
+    }
+    
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        if status == CLAuthorizationStatus.AuthorizedWhenInUse {
+            viewMap.myLocationEnabled = true
+        }
+    }
+    
+    func locationManager(manager: CLLocationManager,
+        didFailWithError error: NSError){
+            
+            print("An error occurred while tracking location changes : \(error.description)")
     }
     
     func locateWithLongitude(lon: Double, andLatitude lat: Double, andTitle title: String) {

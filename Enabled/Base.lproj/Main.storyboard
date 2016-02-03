@@ -69,6 +69,32 @@
             </objects>
             <point key="canvasLocation" x="516" y="313"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="TXd-RY-bjc">
+            <objects>
+                <viewController id="Ju9-bP-gn3" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wjA-xD-DAv"/>
+                        <viewControllerLayoutGuide type="bottom" id="J8F-0s-4ld"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5fG-5N-zHf">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="ucL-C9-5kD">
+                                <rect key="frame" x="18" y="182" width="564" height="31"/>
+                            </slider>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ucL-C9-5kD" firstAttribute="centerX" secondItem="5fG-5N-zHf" secondAttribute="centerX" id="tcm-Rb-AFf"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bTi-De-xs8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1266" y="1495"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="7X8-QE-bng">
             <objects>
@@ -100,7 +126,7 @@
     <resources>
         <image name="Add" width="35" height="35"/>
         <image name="Find" width="25" height="25"/>
-        <image name="Image" width="42" height="53"/>
+        <image name="Image" width="31" height="40"/>
         <image name="Search" width="50" height="50"/>
     </resources>
 </document>
