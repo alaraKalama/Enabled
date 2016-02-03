@@ -81,7 +81,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
             
             if let place = place {
                 let coordinates = CLLocationCoordinate2DMake(place.coordinate.latitude, place.coordinate.longitude)
-                let marker = GMSMarker(position: coordinates)
+                let marker = PlaceMarker(place: place)
                 marker.title = place.name
                 //TODO: Add a picked place to Firebase
                 print(place.placeID)

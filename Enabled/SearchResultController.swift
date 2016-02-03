@@ -8,7 +8,6 @@
 //http://sweettutos.com/2015/09/30/how-to-use-the-google-places-autocomplete-api-with-google-maps-sdk-on-ios/
 
 import Foundation
-import GoogleMaps
 
 protocol LocateOnTheMap{
     func locateWithLongitude(lon:Double, andLatitude lat:Double, andTitle title: String)
