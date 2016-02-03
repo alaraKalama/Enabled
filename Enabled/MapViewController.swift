@@ -5,7 +5,7 @@
 //  Created by Bianka on 2/2/16.
 //  Copyright © 2016 MogaSam. All rights reserved.
 //
-
+import Foundation
 import UIKit
 import GoogleMaps
 
@@ -16,7 +16,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
     @IBOutlet weak var bbFindAddress: UIBarButtonItem!
     
     @IBOutlet weak var lblInfo: UILabel!
-    
+   
     var locationManager = CLLocationManager()
     var didFindMyLocation = false
     var placePicker: GMSPlacePicker!
@@ -106,14 +106,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
         self.presentViewController(searchController, animated: true, completion: nil)
     }
     
-    @IBAction func addPlace(sender: AnyObject) {
-        print("add")
-        
-    }
-    
     func setupLocationMarker(coordinate: CLLocationCoordinate2D) {
-        
+        //create place from CLLocationCooredinate2D
+        //let place = CLLocationCoordinate2DMake(coordinate.latitude, coordinate.longitude)
+        viewMap.clear()
+        //locationMarker = PlaceMarker(position: coordinate);
         locationMarker = GMSMarker(position: coordinate)
+        locationMarker.icon = UIImage(named: "pin")
         locationMarker.map = viewMap
     }
     
@@ -129,15 +128,16 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
             print("An error occurred while tracking location changes : \(error.description)")
     }
     
+    //locate searched place
     func locateWithLongitude(lon: Double, andLatitude lat: Double, andTitle title: String) {
         
         dispatch_async(dispatch_get_main_queue()) { () -> Void in
             let position = CLLocationCoordinate2DMake(lat, lon)
             let marker = GMSMarker(position: position)
-            
+
             let camera  = GMSCameraPosition.cameraWithLatitude(lat, longitude: lon, zoom: 10)
             self.viewMap.camera = camera
-            
+            marker.icon = UIImage(named: "pin")
             marker.title = title
             marker.map = self.viewMap
         }

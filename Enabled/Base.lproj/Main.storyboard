@@ -38,7 +38,6 @@
                     </view>
                     <toolbarItems>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="QU5-eD-7FV"/>
-                        <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="zc8-pT-i07"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="LF0-KK-2f7">
                         <barButtonItem key="leftBarButtonItem" image="Image" id="dRG-Rb-Tr6"/>
@@ -51,11 +50,6 @@
                             <barButtonItem image="Find" id="TEo-Yw-JOp">
                                 <connections>
                                     <action selector="searchNearbyPlaces:" destination="vXZ-lx-hvc" id="t68-A3-Qcp"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem image="Add" id="IFa-x3-Xlf">
-                                <connections>
-                                    <action selector="addPlace:" destination="vXZ-lx-hvc" id="0PI-Ia-wi6"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
@@ -124,7 +118,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Add" width="35" height="35"/>
         <image name="Find" width="25" height="25"/>
         <image name="Image" width="31" height="40"/>
         <image name="Search" width="50" height="50"/>

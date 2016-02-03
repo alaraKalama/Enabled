@@ -11,6 +11,7 @@ import GoogleMaps
 
 class PlaceMarker : GMSMarker {
     let place: GMSPlace
+    //let coordinate2D: CLLocationCoordinate2D
     
     init(place: GMSPlace) {
         self.place = place

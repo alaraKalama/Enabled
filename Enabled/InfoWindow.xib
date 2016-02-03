@@ -30,6 +30,7 @@
                 <constraint firstAttribute="trailing" secondItem="F1l-xS-igH" secondAttribute="trailing" id="GyI-kZ-qCM"/>
                 <constraint firstItem="F1l-xS-igH" firstAttribute="top" secondItem="1xU-v0-F70" secondAttribute="bottom" constant="-76" id="kwv-EG-z1a"/>
             </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="454" y="325"/>
         </view>
