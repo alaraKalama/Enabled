@@ -21,10 +21,11 @@
 		263692351C60159100167EBE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 263692341C60159100167EBE /* QuartzCore.framework */; };
 		263692371C60159800167EBE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 263692361C60159800167EBE /* SystemConfiguration.framework */; };
 		266BB5F91C616796000143FB /* SearchResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266BB5F81C616796000143FB /* SearchResultController.swift */; };
+		2698875A1C63737D00910A78 /* CustomInfoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 269887591C63737D00910A78 /* CustomInfoWindow.xib */; };
+		2698875C1C63738C00910A78 /* CustomInfoWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2698875B1C63738C00910A78 /* CustomInfoWindow.swift */; };
 		26D4CCD11C61013500319386 /* model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D4CCD01C61013500319386 /* model.swift */; };
 		26D4CCDD1C61023C00319386 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D4CCDC1C61023C00319386 /* MapViewController.swift */; };
 		26D4CCE01C61534A00319386 /* MapTasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D4CCDF1C61534A00319386 /* MapTasks.swift */; };
-		26F15A471C626EDC00A174DC /* PlaceMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F15A461C626EDC00A174DC /* PlaceMarker.swift */; };
 		26F65C851C6010DC005E4A4F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F65C841C6010DC005E4A4F /* AppDelegate.swift */; };
 		26F65C8A1C6010DC005E4A4F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26F65C881C6010DC005E4A4F /* Main.storyboard */; };
 		26F65C8D1C6010DC005E4A4F /* Enabled.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 26F65C8B1C6010DC005E4A4F /* Enabled.xcdatamodeld */; };
@@ -70,10 +71,11 @@
 		266BB5F81C616796000143FB /* SearchResultController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultController.swift; sourceTree = "<group>"; };
 		266BB5FA1C6184A8000143FB /* bg-BG */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "bg-BG"; path = "bg-BG.lproj/Main.strings"; sourceTree = "<group>"; };
 		266BB5FB1C6184A8000143FB /* bg-BG */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "bg-BG"; path = "bg-BG.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		269887591C63737D00910A78 /* CustomInfoWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomInfoWindow.xib; sourceTree = "<group>"; };
+		2698875B1C63738C00910A78 /* CustomInfoWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomInfoWindow.swift; sourceTree = "<group>"; };
 		26D4CCD01C61013500319386 /* model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = model.swift; path = Model/model.swift; sourceTree = "<group>"; };
 		26D4CCDC1C61023C00319386 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		26D4CCDF1C61534A00319386 /* MapTasks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapTasks.swift; path = Tasks/MapTasks.swift; sourceTree = "<group>"; };
-		26F15A461C626EDC00A174DC /* PlaceMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceMarker.swift; sourceTree = "<group>"; };
 		26F65C811C6010DC005E4A4F /* Enabled.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Enabled.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26F65C841C6010DC005E4A4F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		26F65C891C6010DC005E4A4F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -158,7 +160,7 @@
 		26D4CCD81C61018600319386 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				26F15A461C626EDC00A174DC /* PlaceMarker.swift */,
+				2698875B1C63738C00910A78 /* CustomInfoWindow.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -166,6 +168,7 @@
 		26D4CCD91C6101A200319386 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				269887591C63737D00910A78 /* CustomInfoWindow.xib */,
 				26F65C881C6010DC005E4A4F /* Main.storyboard */,
 				26F65C901C6010DC005E4A4F /* LaunchScreen.storyboard */,
 			);
@@ -377,6 +380,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2698875A1C63737D00910A78 /* CustomInfoWindow.xib in Resources */,
 				26F65C921C6010DC005E4A4F /* LaunchScreen.storyboard in Resources */,
 				26F65C8F1C6010DC005E4A4F /* Assets.xcassets in Resources */,
 				261700111C6057C00053F9AB /* Media.xcassets in Resources */,
@@ -456,8 +460,8 @@
 				266BB5F91C616796000143FB /* SearchResultController.swift in Sources */,
 				26D4CCDD1C61023C00319386 /* MapViewController.swift in Sources */,
 				26D4CCD11C61013500319386 /* model.swift in Sources */,
+				2698875C1C63738C00910A78 /* CustomInfoWindow.swift in Sources */,
 				26D4CCE01C61534A00319386 /* MapTasks.swift in Sources */,
-				26F15A471C626EDC00A174DC /* PlaceMarker.swift in Sources */,
 				26F65C851C6010DC005E4A4F /* AppDelegate.swift in Sources */,
 				26F65C8D1C6010DC005E4A4F /* Enabled.xcdatamodeld in Sources */,
 			);

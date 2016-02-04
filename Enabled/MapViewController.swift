@@ -105,6 +105,15 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
             }
     }
     
+    //allow the app to use the custom info window
+    func mapView(mapView: GMSMapView!, markerInfoWindow marker: GMSMarker!) -> UIView! {
+        let customInfoWindow = NSBundle.mainBundle().loadNibNamed("CustomInfoWindow", owner: self, options: nil)[0] as! CustomInfoWindow
+        customInfoWindow.placeName.text = "Text Name"
+        customInfoWindow.accessibilityLevel.text = "100%"
+        customInfoWindow.WCaccessLevel.text = "NO"
+        return customInfoWindow
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

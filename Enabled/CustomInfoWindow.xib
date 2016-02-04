@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CustomInfoWindow" customModule="Enabled" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="200" height="100"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg overlay" translatesAutoresizingMaskIntoConstraints="NO" id="eKX-3M-4Gc">
+                    <rect key="frame" x="0.0" y="0.0" width="200" height="100"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Accessibility:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JlZ-g7-flG">
+                    <rect key="frame" x="19" y="37" width="82" height="14"/>
+                    <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="11"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WC access:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mgV-14-X4S">
+                    <rect key="frame" x="19" y="52" width="70" height="14"/>
+                    <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="11"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vee-y5-dv0">
+                    <rect key="frame" x="138" y="52" width="30" height="14"/>
+                    <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="11"/>
+                    <color key="textColor" red="0.85098039219999999" green="0.30196078430000001" blue="0.23921568630000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Place Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J3s-C5-zgV">
+                    <rect key="frame" x="54" y="8" width="92" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Kr-g6-DQU">
+                    <rect key="frame" x="138" y="37" width="30" height="14"/>
+                    <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="11"/>
+                    <color key="textColor" red="0.85098039215686272" green="0.30196078431372547" blue="0.23921568627450979" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="JlZ-g7-flG" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="09g-a5-NSw"/>
+                <constraint firstItem="eKX-3M-4Gc" firstAttribute="top" secondItem="J3s-C5-zgV" secondAttribute="bottom" constant="-29" id="0vq-lp-jnb"/>
+                <constraint firstAttribute="trailing" secondItem="eKX-3M-4Gc" secondAttribute="trailing" id="8g7-Jg-6ed"/>
+                <constraint firstItem="eKX-3M-4Gc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Ajk-se-ngj"/>
+                <constraint firstItem="eKX-3M-4Gc" firstAttribute="leading" secondItem="JlZ-g7-flG" secondAttribute="trailing" constant="-101" id="E8O-TI-o55"/>
+                <constraint firstItem="vee-y5-dv0" firstAttribute="top" secondItem="1Kr-g6-DQU" secondAttribute="bottom" constant="1" id="Iel-VE-OgB"/>
+                <constraint firstItem="JlZ-g7-flG" firstAttribute="top" secondItem="J3s-C5-zgV" secondAttribute="bottom" constant="8" id="Kqg-1O-uJF"/>
+                <constraint firstItem="eKX-3M-4Gc" firstAttribute="leading" secondItem="mgV-14-X4S" secondAttribute="trailing" constant="-89" id="THo-Bf-JAM"/>
+                <constraint firstItem="1Kr-g6-DQU" firstAttribute="leading" secondItem="eKX-3M-4Gc" secondAttribute="trailing" constant="-62" id="WNv-Dl-qhT"/>
+                <constraint firstItem="mgV-14-X4S" firstAttribute="top" secondItem="JlZ-g7-flG" secondAttribute="bottom" constant="1" id="WiE-7h-6W0"/>
+                <constraint firstAttribute="bottom" secondItem="eKX-3M-4Gc" secondAttribute="bottom" id="ZwB-Tt-o0N"/>
+                <constraint firstItem="vee-y5-dv0" firstAttribute="leading" secondItem="eKX-3M-4Gc" secondAttribute="trailing" constant="-62" id="a9Q-AX-DCS"/>
+                <constraint firstItem="1Kr-g6-DQU" firstAttribute="leading" secondItem="J3s-C5-zgV" secondAttribute="trailing" constant="-8" id="hVz-kz-tJ7"/>
+                <constraint firstItem="J3s-C5-zgV" firstAttribute="centerX" secondItem="eKX-3M-4Gc" secondAttribute="centerX" id="hzZ-K6-eM5"/>
+                <constraint firstItem="eKX-3M-4Gc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="vFy-Vf-cFX"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="WCaccessLevel" destination="vee-y5-dv0" id="WlM-G8-uIq"/>
+                <outlet property="accessibilityLevel" destination="1Kr-g6-DQU" id="Yeo-zt-GV1"/>
+                <outlet property="placeName" destination="J3s-C5-zgV" id="Nai-7b-5wf"/>
+            </connections>
+            <point key="canvasLocation" x="416" y="363"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="bg overlay" width="125" height="60"/>
+    </resources>
+</document>
