@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import GoogleMaps
 
-class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBarDelegate, GMSMapViewDelegate, LocateOnTheMap {
+class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureRecognizerDelegate, UISearchBarDelegate, GMSMapViewDelegate, LocateOnTheMap {
     
     @IBOutlet weak var viewMap: GMSMapView!
     
@@ -17,17 +17,19 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
     
     @IBOutlet weak var lblInfo: UILabel!
    
+    @IBOutlet weak var infoWindow: CustomInfoWindow!
+
+    var tapGestureRecognizer: UITapGestureRecognizer!
     var locationManager = CLLocationManager()
     var didFindMyLocation = false
     var placePicker: GMSPlacePicker!
     var latitude: Double!
     var longitude: Double!
     var locationMarker: GMSMarker!
-    var infoWindow = CustomInfoWindow()
     var searchResultController:SearchResultController!
     var resultsArray = [String]()
-    
-    
+    var firstX:Double = 0;
+    var firstY:Double = 0;
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +38,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
         //ask for permission to access current location
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
+        
+        //gesture recognizer code
+        self.tapGestureRecognizer = UITapGestureRecognizer(target: self.infoWindow, action: "tapResponder")
+        self.tapGestureRecognizer.numberOfTapsRequired = 1
+        self.tapGestureRecognizer.numberOfTouchesRequired = 1
+
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -92,6 +100,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
         }
     }
     
+    func mapView(mapView: GMSMapView!, didTapInfoWindowOfMarker marker: GMSMarker!) {
+        print("tap didTapInfoWindowOfMarker")
+    }
+    
     func searchBar(searchBar: UISearchBar,
         textDidChange searchText: String){
             
@@ -117,6 +129,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
         self.infoWindow.accessibilityLevel.text = "100%"
         self.infoWindow.WCaccessLevel.text = "NO"
         self.infoWindow.userInteractionEnabled = true
+        self.tapGestureRecognizer.delegate = self.infoWindow
+        self.infoWindow.addGestureRecognizer(self.tapGestureRecognizer)
         return self.infoWindow
     }
     
@@ -132,10 +146,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
     }
 
     // action methods
-    
-    func didLongPressInfoWindowOfMarker(marker: GMSMarker) {
-        print("Long press info window")
-    }
     
     @IBAction func searchNearbyPlaces(sender: AnyObject) {
         print("Search")

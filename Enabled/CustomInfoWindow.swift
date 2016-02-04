@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CustomInfoWindow: UIView {
+class CustomInfoWindow: UIView, UIGestureRecognizerDelegate {
 
     @IBOutlet var overlay: UIImage!
     @IBOutlet var placeName: UILabel!
@@ -16,9 +16,6 @@ class CustomInfoWindow: UIView {
     @IBOutlet var WCaccessLevel: UILabel!
     @IBOutlet var distance: UILabel!
     
-    func handleTap(){
-        print("tapped from class")
-    }
         /*
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
