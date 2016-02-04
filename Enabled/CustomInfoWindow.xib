@@ -53,9 +53,11 @@
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="info" translatesAutoresizingMaskIntoConstraints="NO" id="FcJ-vW-uPz">
                     <rect key="frame" x="211" y="93" width="26" height="26"/>
+                    <gestureRecognizers/>
                 </imageView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <gestureRecognizers/>
             <constraints>
                 <constraint firstItem="FcJ-vW-uPz" firstAttribute="leading" secondItem="eKX-3M-4Gc" secondAttribute="trailing" constant="-34" id="13n-Sw-cuw"/>
                 <constraint firstAttribute="trailing" secondItem="eKX-3M-4Gc" secondAttribute="trailing" id="1Qo-9J-5xd"/>
@@ -85,12 +87,12 @@
                 <outlet property="distance" destination="oMS-Tw-xiN" id="kx8-Wj-isa"/>
                 <outlet property="placeName" destination="J3s-C5-zgV" id="Nai-7b-5wf"/>
                 <outletCollection property="gestureRecognizers" destination="VMs-QM-QQj" appends="YES" id="Osv-d3-xG6"/>
-                <outletCollection property="gestureRecognizers" destination="iev-cJ-qeO" appends="YES" id="oTw-9e-zS9"/>
+                <outletCollection property="gestureRecognizers" destination="aNv-Ds-nt7" appends="YES" id="Mxq-ci-mYp"/>
             </connections>
             <point key="canvasLocation" x="438.5" y="349.5"/>
         </view>
         <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="VMs-QM-QQj"/>
-        <tapGestureRecognizer id="iev-cJ-qeO"/>
+        <tapGestureRecognizer id="aNv-Ds-nt7"/>
     </objects>
     <resources>
         <image name="InfoWindow" width="95" height="44"/>

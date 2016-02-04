@@ -23,8 +23,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
     var latitude: Double!
     var longitude: Double!
     var locationMarker: GMSMarker!
+    var infoWindow = CustomInfoWindow()
     var searchResultController:SearchResultController!
     var resultsArray = [String]()
+    
     
     
     override func viewDidLoad() {
@@ -33,7 +35,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
         locationManager.delegate = self
         //ask for permission to access current location
         locationManager.requestWhenInUseAuthorization()
-        //locationManager.startUpdatingLocation()
+        locationManager.startUpdatingLocation()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -47,7 +49,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if !didFindMyLocation {
             let myLocation: CLLocation = change![NSKeyValueChangeNewKey] as! CLLocation
-            viewMap.camera = GMSCameraPosition.cameraWithTarget(myLocation.coordinate, zoom: 16.0)
+            viewMap.camera = GMSCameraPosition.cameraWithTarget(myLocation.coordinate, zoom: 18.0)
             viewMap.delegate = self
             self.latitude = myLocation.coordinate.latitude
             self.longitude = myLocation.coordinate.longitude
@@ -60,7 +62,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
         viewMap.clear()
         locationMarker = GMSMarker(position: coordinate)
         locationMarker.icon = UIImage(named: "pin")
-        locationMarker.infoWindowAnchor = CGPointMake(0.5, 0.2)
+        locationMarker.infoWindowAnchor = CGPointMake(0.3, 0.2)
         locationMarker.map = viewMap
     }
     
@@ -74,18 +76,19 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
     
     func locationManager(manager: CLLocationManager,
         didFailWithError error: NSError){
-            
             print("An error occurred while tracking location changes : \(error.description)")
     }
     
     func locateWithLongitude(lon: Double, andLatitude lat: Double, andTitle title: String) {
-        
         dispatch_async(dispatch_get_main_queue()) { () -> Void in
             let position = CLLocationCoordinate2DMake(lat, lon)
-            self.setupLocationMarker(position)
-            let camera  = GMSCameraPosition.cameraWithLatitude(lat, longitude: lon, zoom: 10)
+            let marker = GMSMarker(position: position)
+            let camera  = GMSCameraPosition.cameraWithLatitude(lat, longitude: lon, zoom: 18.0)
             self.viewMap.camera = camera
-            self.locationMarker.title = title
+            marker.icon = UIImage(named: "pin")
+            marker.snippet = "Accessibility: 10%\nWC access: NO"
+            marker.title = title
+            marker.map = self.viewMap
         }
     }
     
@@ -109,11 +112,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
     
     //allow the app to use the custom info window
     func mapView(mapView: GMSMapView!, markerInfoWindow marker: GMSMarker!) -> UIView! {
-        let customInfoWindow = NSBundle.mainBundle().loadNibNamed("CustomInfoWindow", owner: self, options: nil)[0] as! CustomInfoWindow
-        customInfoWindow.placeName.text = "Text Name"
-        customInfoWindow.accessibilityLevel.text = "100%"
-        customInfoWindow.WCaccessLevel.text = "NO"
-        return customInfoWindow
+        self.infoWindow = NSBundle.mainBundle().loadNibNamed("CustomInfoWindow", owner: self, options: nil)[0] as! CustomInfoWindow
+        self.infoWindow.placeName.text = "Text Name"
+        self.infoWindow.accessibilityLevel.text = "100%"
+        self.infoWindow.WCaccessLevel.text = "NO"
+        self.infoWindow.userInteractionEnabled = true
+        return self.infoWindow
     }
     
     override func didReceiveMemoryWarning() {
@@ -128,9 +132,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
     }
 
     // action methods
-    func didTapInfoWindowOfMarker(mapView: GMSMapView!, marker: GMSMarker) {
-        print("Tap info window")
-    }
     
     func didLongPressInfoWindowOfMarker(marker: GMSMarker) {
         print("Long press info window")
@@ -154,11 +155,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
             
             if let place = place {
                 let coordinates = CLLocationCoordinate2DMake(place.coordinate.latitude, place.coordinate.longitude)
-                self.setupLocationMarker(position)
-                self.locationMarker.title = place.name
+                let marker = GMSMarker(position: coordinates)
+                marker.title = place.name
+                marker.icon = UIImage(named: "pin")
+                marker.map = self.viewMap
                 //TODO: Add a picked place to Firebase
                 self.viewMap.animateToLocation(coordinates)
-                self.viewMap.animateToZoom(15.0)
+                self.viewMap.animateToZoom(18.0)
             }
             else {
                 print("No place was selected")
