@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import GoogleMaps
 
-class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBarDelegate, LocateOnTheMap {
+class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBarDelegate, GMSMapViewDelegate, LocateOnTheMap {
     
     @IBOutlet weak var viewMap: GMSMapView!
     
@@ -30,25 +30,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.layoutIfNeeded()
-        
-        //ask for permission to access current location
         locationManager.delegate = self
+        //ask for permission to access current location
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
     }
     
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        if !didFindMyLocation {
-            let myLocation: CLLocation = change![NSKeyValueChangeNewKey] as! CLLocation
-            viewMap.camera = GMSCameraPosition.cameraWithTarget(myLocation.coordinate, zoom: 16.0)
-            self.latitude = myLocation.coordinate.latitude
-            self.longitude = myLocation.coordinate.longitude
-            viewMap.settings.myLocationButton = true
-            didFindMyLocation = true
-        }
-    }
-    
-    //autocomplete
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         viewMap.animateToZoom(25.0)
@@ -56,63 +43,24 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
         searchResultController = SearchResultController()
         searchResultController.delegate = self
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    // MARK: IBAction method implementation
-    @IBAction func searchNearbyPlaces(sender: AnyObject) {
-        print("Search")
-        let center = CLLocationCoordinate2DMake(self.latitude, self.longitude)
-        let northEast = CLLocationCoordinate2DMake(center.latitude + 0.001, center.longitude + 0.001)
-        let southWest = CLLocationCoordinate2DMake(center.latitude - 0.001, center.longitude - 0.001)
-        let viewport = GMSCoordinateBounds(coordinate: northEast, coordinate: southWest)
-        let config = GMSPlacePickerConfig(viewport: viewport)
-        self.placePicker = GMSPlacePicker(config: config)
-        
-        placePicker.pickPlaceWithCallback{(place: GMSPlace?, error: NSError?) ->
-            Void in
-            if let error = error {
-                print("Error occured: \(error.localizedDescription)")
-                return
-            }
-            
-            if let place = place {
-                let coordinates = CLLocationCoordinate2DMake(place.coordinate.latitude, place.coordinate.longitude)
-                let marker = PlaceMarker(place: place)
-                marker.title = place.name
-                //TODO: Add a picked place to Firebase
-                print(place.placeID)
-                print(place.priceLevel)
-                print(place.description)
-                print(place.openNowStatus)
-                marker.map = self.viewMap
-                self.viewMap.animateToLocation(coordinates)
-                self.viewMap.animateToZoom(15.0)
-            }
-            else {
-                print("No place was selected")
-            }
+
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+        if !didFindMyLocation {
+            let myLocation: CLLocation = change![NSKeyValueChangeNewKey] as! CLLocation
+            viewMap.camera = GMSCameraPosition.cameraWithTarget(myLocation.coordinate, zoom: 16.0)
+            viewMap.delegate = self
+            self.latitude = myLocation.coordinate.latitude
+            self.longitude = myLocation.coordinate.longitude
+            viewMap.settings.myLocationButton = true
+            didFindMyLocation = true
         }
     }
     
-    @IBAction func findAddress(sender: AnyObject) {
-        print("find")
-        let searchController = UISearchController(searchResultsController: searchResultController)
-        searchController.searchBar.delegate = self
-        //TODO: Add a picked place to Firebase
-        self.presentViewController(searchController, animated: true, completion: nil)
-    }
-    
     func setupLocationMarker(coordinate: CLLocationCoordinate2D) {
-        //create place from CLLocationCooredinate2D
-        //let place = CLLocationCoordinate2DMake(coordinate.latitude, coordinate.longitude)
         viewMap.clear()
-        //locationMarker = PlaceMarker(position: coordinate);
         locationMarker = GMSMarker(position: coordinate)
         locationMarker.icon = UIImage(named: "pin")
+        locationMarker.infoWindowAnchor = CGPointMake(0.5, 0.2)
         locationMarker.map = viewMap
     }
     
@@ -128,18 +76,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
             print("An error occurred while tracking location changes : \(error.description)")
     }
     
-    //locate searched place
     func locateWithLongitude(lon: Double, andLatitude lat: Double, andTitle title: String) {
         
         dispatch_async(dispatch_get_main_queue()) { () -> Void in
             let position = CLLocationCoordinate2DMake(lat, lon)
-            let marker = GMSMarker(position: position)
-
+            self.setupLocationMarker(position)
             let camera  = GMSCameraPosition.cameraWithLatitude(lat, longitude: lon, zoom: 10)
             self.viewMap.camera = camera
-            marker.icon = UIImage(named: "pin")
-            marker.title = title
-            marker.map = self.viewMap
+            self.locationMarker.title = title
         }
     }
     
@@ -159,5 +103,55 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
                 }
                 self.searchResultController.reloadDataWithArray(self.resultsArray)
             }
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    func getDistanceMetresBetweenLocationCoordinates(coord1: CLLocationCoordinate2D, coord2: CLLocationCoordinate2D) -> Double {
+        let location1 = CLLocation(latitude: coord1.latitude, longitude: coord1.longitude)
+        let location2 = CLLocation(latitude: coord2.latitude, longitude: coord2.longitude)
+        return location1.distanceFromLocation(location2)
+    }
+
+    // IBAction method implementation
+    @IBAction func searchNearbyPlaces(sender: AnyObject) {
+        print("Search")
+        let position = CLLocationCoordinate2DMake(self.latitude, self.longitude)
+        let northEast = CLLocationCoordinate2DMake(position.latitude + 0.001, position.longitude + 0.001)
+        let southWest = CLLocationCoordinate2DMake(position.latitude - 0.001, position.longitude - 0.001)
+        let viewport = GMSCoordinateBounds(coordinate: northEast, coordinate: southWest)
+        let config = GMSPlacePickerConfig(viewport: viewport)
+        self.placePicker = GMSPlacePicker(config: config)
+        
+        placePicker.pickPlaceWithCallback{(place: GMSPlace?, error: NSError?) ->
+            Void in
+            if let error = error {
+                print("Error occured: \(error.localizedDescription)")
+                return
+            }
+            
+            if let place = place {
+                let coordinates = CLLocationCoordinate2DMake(place.coordinate.latitude, place.coordinate.longitude)
+                self.setupLocationMarker(position)
+                self.locationMarker.title = place.name
+                //TODO: Add a picked place to Firebase
+                self.viewMap.animateToLocation(coordinates)
+                self.viewMap.animateToZoom(15.0)
+            }
+            else {
+                print("No place was selected")
+            }
+        }
+    }
+    
+    @IBAction func findAddress(sender: AnyObject) {
+        print("find")
+        let searchController = UISearchController(searchResultsController: searchResultController)
+        searchController.searchBar.delegate = self
+        //TODO: Add a picked place to Firebase
+        self.presentViewController(searchController, animated: true, completion: nil)
     }
 }
