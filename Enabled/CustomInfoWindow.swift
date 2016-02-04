@@ -10,10 +10,16 @@ import UIKit
 
 class CustomInfoWindow: UIView {
 
+    @IBOutlet var overlay: UIImage!
     @IBOutlet var placeName: UILabel!
     @IBOutlet var accessibilityLevel: UILabel!
     @IBOutlet var WCaccessLevel: UILabel!
-    /*
+    @IBOutlet var distance: UILabel!
+    
+    func handleTap(){
+        print("tapped from class")
+    }
+        /*
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
     override func drawRect(rect: CGRect) {

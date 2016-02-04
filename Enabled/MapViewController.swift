@@ -33,7 +33,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
         locationManager.delegate = self
         //ask for permission to access current location
         locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
+        //locationManager.startUpdatingLocation()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -66,7 +66,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
     
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         if status == CLAuthorizationStatus.AuthorizedWhenInUse {
+            locationManager.startUpdatingLocation()
             viewMap.myLocationEnabled = true
+            viewMap.settings.myLocationButton = true
         }
     }
     
@@ -125,7 +127,15 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
         return location1.distanceFromLocation(location2)
     }
 
-    // IBAction method implementation
+    // action methods
+    func didTapInfoWindowOfMarker(mapView: GMSMapView!, marker: GMSMarker) {
+        print("Tap info window")
+    }
+    
+    func didLongPressInfoWindowOfMarker(marker: GMSMarker) {
+        print("Long press info window")
+    }
+    
     @IBAction func searchNearbyPlaces(sender: AnyObject) {
         print("Search")
         let position = CLLocationCoordinate2DMake(self.latitude, self.longitude)
