@@ -100,10 +100,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
         }
     }
     
-    func mapView(mapView: GMSMapView!, didTapInfoWindowOfMarker marker: GMSMarker!) {
-        print("tap didTapInfoWindowOfMarker")
-    }
-    
     func searchBar(searchBar: UISearchBar,
         textDidChange searchText: String){
             
@@ -146,7 +142,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
     }
 
     // action methods
+    func mapView(mapView: GMSMapView!, didTapInfoWindowOfMarker marker: GMSMarker!) {
+        print("tap didTapInfoWindowOfMarker")
+    }
     
+    func mapView(mapView: GMSMapView!, didLongPressInfoWindowOfMarker marker: GMSMarker!) {
+        print("tap didLongPressInfoWindowOfMarker")
+    }
+
     @IBAction func searchNearbyPlaces(sender: AnyObject) {
         print("Search")
         let position = CLLocationCoordinate2DMake(self.latitude, self.longitude)
