@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'FE74148E9004F2FC83A76C24'
-               BlueprintName = 'Pods'
+               BlueprintIdentifier = '7EAF77BCEA72FBF69B4D3CA9'
+               BlueprintName = 'DCKit'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'Pods.framework'>
+               BuildableName = 'DCKit.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

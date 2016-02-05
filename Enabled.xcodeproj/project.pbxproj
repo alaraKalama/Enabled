@@ -23,7 +23,7 @@
 		266BB5F91C616796000143FB /* SearchResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266BB5F81C616796000143FB /* SearchResultController.swift */; };
 		2698875A1C63737D00910A78 /* CustomInfoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 269887591C63737D00910A78 /* CustomInfoWindow.xib */; };
 		2698875C1C63738C00910A78 /* CustomInfoWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2698875B1C63738C00910A78 /* CustomInfoWindow.swift */; };
-		26D4CCD11C61013500319386 /* model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D4CCD01C61013500319386 /* model.swift */; };
+		2698879B1C641AC100910A78 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2698879A1C641AC100910A78 /* Place.swift */; };
 		26D4CCDD1C61023C00319386 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D4CCDC1C61023C00319386 /* MapViewController.swift */; };
 		26D4CCE01C61534A00319386 /* MapTasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D4CCDF1C61534A00319386 /* MapTasks.swift */; };
 		26F65C851C6010DC005E4A4F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F65C841C6010DC005E4A4F /* AppDelegate.swift */; };
@@ -33,7 +33,7 @@
 		26F65C921C6010DC005E4A4F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26F65C901C6010DC005E4A4F /* LaunchScreen.storyboard */; };
 		26F65C9D1C6010DD005E4A4F /* EnabledTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F65C9C1C6010DD005E4A4F /* EnabledTests.swift */; };
 		26F65CA81C6010DD005E4A4F /* EnabledUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F65CA71C6010DD005E4A4F /* EnabledUITests.swift */; };
-		AB2B80C7687827FC60D1ED7C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9232AF742DA3F333082D7088 /* libPods.a */; };
+		E64EF16CA7C5346678C117DF /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8542ABD62B731F62E030DCBE /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,7 +73,7 @@
 		266BB5FB1C6184A8000143FB /* bg-BG */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "bg-BG"; path = "bg-BG.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		269887591C63737D00910A78 /* CustomInfoWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomInfoWindow.xib; sourceTree = "<group>"; };
 		2698875B1C63738C00910A78 /* CustomInfoWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomInfoWindow.swift; sourceTree = "<group>"; };
-		26D4CCD01C61013500319386 /* model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = model.swift; path = Model/model.swift; sourceTree = "<group>"; };
+		2698879A1C641AC100910A78 /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		26D4CCDC1C61023C00319386 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		26D4CCDF1C61534A00319386 /* MapTasks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapTasks.swift; path = Tasks/MapTasks.swift; sourceTree = "<group>"; };
 		26F65C811C6010DC005E4A4F /* Enabled.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Enabled.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -89,7 +89,7 @@
 		26F65CA31C6010DD005E4A4F /* EnabledUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EnabledUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		26F65CA71C6010DD005E4A4F /* EnabledUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnabledUITests.swift; sourceTree = "<group>"; };
 		26F65CA91C6010DD005E4A4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9232AF742DA3F333082D7088 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		8542ABD62B731F62E030DCBE /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		95E70A0EF1EAF4A8BF325A55 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		C7BDBF0A0BC3ED409DB2D382 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -111,7 +111,7 @@
 				263692251C60155400167EBE /* CoreLocation.framework in Frameworks */,
 				263692231C60154E00167EBE /* CoreData.framework in Frameworks */,
 				263692211C60154800167EBE /* AVFoundation.framework in Frameworks */,
-				AB2B80C7687827FC60D1ED7C /* libPods.a in Frameworks */,
+				E64EF16CA7C5346678C117DF /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,7 +143,7 @@
 		26D4CCD21C61014C00319386 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				26D4CCD01C61013500319386 /* model.swift */,
+				2698879A1C641AC100910A78 /* Place.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -256,7 +256,7 @@
 				263692241C60155400167EBE /* CoreLocation.framework */,
 				263692221C60154E00167EBE /* CoreData.framework */,
 				263692201C60154800167EBE /* AVFoundation.framework */,
-				9232AF742DA3F333082D7088 /* libPods.a */,
+				8542ABD62B731F62E030DCBE /* Pods.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -459,7 +459,7 @@
 			files = (
 				266BB5F91C616796000143FB /* SearchResultController.swift in Sources */,
 				26D4CCDD1C61023C00319386 /* MapViewController.swift in Sources */,
-				26D4CCD11C61013500319386 /* model.swift in Sources */,
+				2698879B1C641AC100910A78 /* Place.swift in Sources */,
 				2698875C1C63738C00910A78 /* CustomInfoWindow.swift in Sources */,
 				26D4CCE01C61534A00319386 /* MapTasks.swift in Sources */,
 				26F65C851C6010DC005E4A4F /* AppDelegate.swift in Sources */,

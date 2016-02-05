@@ -1,12 +1,15 @@
 PODS:
+  - DCKit (1.0.4)
   - Firebase (2.5.0)
   - GoogleMaps (1.11.1)
 
 DEPENDENCIES:
+  - DCKit
   - Firebase (>= 2.5.0)
   - GoogleMaps
 
 SPEC CHECKSUMS:
+  DCKit: 0c3fb43b5fa98664e20c760d2c9545d7eeec10dc
   Firebase: 744617c0733b45198f9486ebd5cac64ec2d10d79
   GoogleMaps: c947160008f414c66707a5ea60f35e92055c7670
 
