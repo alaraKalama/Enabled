@@ -11,6 +11,8 @@ import UIKit
 class Place: NSObject {
 
     var name: String!
+    var address: String!
+    var city: String!
     var accessibilityLevel: Float!
     var WCaccess: Float!
     

@@ -162,12 +162,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
         //print(json)
         if let result = json["results"] as? NSArray {
             if let address = result[0]["address_components"] as? NSArray {
-                let number = address[0]["short_name"] as! String
-                let street = address[1]["short_name"] as! String
-                let city = address[2]["short_name"] as! String
-                let state = address[4]["short_name"] as! String
-                let zip = address[6]["short_name"] as! String
-                print("\n\(number) \(street), \(city), \(state) \(zip)")
+                //print(address)
+                //let number = address[0]["short_name"] as! String
+                //let street = address[1]["short_name"] as! String
+                //let city = address[2]["short_name"] as! String
+                //let state = address[4]["short_name"] as! String
+                //let zip = address[6]["short_name"] as! String
+                //print("\n\(number) \(street), \(city), \(state) \(zip)")
             }
         }
     }

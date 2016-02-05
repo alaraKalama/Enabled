@@ -17,9 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let Google_Places_API_Key = "AIzaSyCMorcNiOJDU1TZVpOMnxQXSWO8APycznc"
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         GMSServices.provideAPIKey(Google_Places_API_Key)
+        self.window?.tintColor = UIColor.blackColor()
+        UIBarButtonItemStyle.Plain
         UIBarButtonItem.appearance().setBackButtonBackgroundImage(UIImage(named: ""), forState: UIControlState.Normal, barMetrics: UIBarMetrics.Default)
         return true
     }
