@@ -117,7 +117,7 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="ratePlace:" destination="AJc-mo-ki6" eventType="touchUpInside" id="UaD-Ns-Czm"/>
-                                    <segue destination="PaO-6Z-x4k" kind="show" id="Pkw-bH-5aY"/>
+                                    <segue destination="PaO-6Z-x4k" kind="show" id="p0G-qe-ORX"/>
                                 </connections>
                             </button>
                         </subviews>

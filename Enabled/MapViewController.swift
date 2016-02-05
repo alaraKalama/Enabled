@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 import GoogleMaps
-
+import Firebase
 
 //navigate to another view
 /*
@@ -42,6 +42,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
     var resultsArray = [String]()
     var firstX:Double = 0;
     var firstY:Double = 0;
+    var ref: Firebase!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,10 +61,20 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        ref = Firebase(url: "https://enabled-moga-sam.firebaseio.com")
         viewMap.animateToZoom(13.0)
         viewMap.addObserver(self, forKeyPath: "myLocation", options: NSKeyValueObservingOptions.New , context: nil)
         searchResultController = SearchResultController()
         searchResultController.delegate = self
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        //Your app should be a good citizen of battery life and memory. To preserve battery life and memory usage, you should only synchronize data when the view is visible.
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        //Remove listeners in viewDidDisappear with a FirebaseHandle
+        //If your controller is still syncing data when the view has disappeared, you are wasting bandwidth and memory.
     }
 
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
@@ -102,7 +113,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
     func locateWithLongitude(lon: Double, andLatitude lat: Double, andTitle title: String) {
         dispatch_async(dispatch_get_main_queue()) { () -> Void in
             let position = CLLocationCoordinate2DMake(lat, lon)
-            self.getAddressFromCoordinates(position)
+            //self.getAddressFromCoordinates(position)
             let marker = GMSMarker(position: position)
             let camera  = GMSCameraPosition.cameraWithLatitude(lat, longitude: lon, zoom: 13.0)
             self.viewMap.camera = camera
@@ -132,10 +143,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
     
     //allow the app to use the custom info window
     func mapView(mapView: GMSMapView!, markerInfoWindow marker: GMSMarker!) -> UIView! {
+        self.getAddressFromMarker(marker)
+        let place = getPlaceFromMarker(marker)
+        //check place in firebase
+        //update place info
+        print("COUNTRY")
+        print(place.country)
         self.infoWindow = NSBundle.mainBundle().loadNibNamed("CustomInfoWindow", owner: self, options: nil)[0] as! CustomInfoWindow
         self.infoWindow.placeName.text = marker.title
-        self.infoWindow.accessibilityLevel.text = "100%"
-        self.infoWindow.WCaccessLevel.text = "NO"
         self.infoWindow.userInteractionEnabled = true
         self.tapGestureRecognizer.delegate = self.infoWindow
         self.infoWindow.addGestureRecognizer(self.tapGestureRecognizer)
@@ -153,24 +168,44 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
         return location1.distanceFromLocation(location2)
     }
     
-    func getAddressFromCoordinates(coordinates: CLLocationCoordinate2D) {
-        print("inside getAddressFromCoordinates")
+    func getAddressFromMarker(marker: GMSMarker) {
+        let coordinates = CLLocationCoordinate2DMake(marker.position.latitude, marker.position.longitude)
         let url = NSURL(string: "\(baseUrl)latlng=\(coordinates.latitude),\(coordinates.longitude)&key=\(Server_API_Key)")
         let data = NSData(contentsOfURL: url!)
         let json = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments) as! NSDictionary
-        print("url, data, json")
-        //print(json)
         if let result = json["results"] as? NSArray {
             if let address = result[0]["address_components"] as? NSArray {
-                //print(address)
-                //let number = address[0]["short_name"] as! String
-                //let street = address[1]["short_name"] as! String
-                //let city = address[2]["short_name"] as! String
-                //let state = address[4]["short_name"] as! String
-                //let zip = address[6]["short_name"] as! String
-                //print("\n\(number) \(street), \(city), \(state) \(zip)")
+                let placeID = result[11]["place_id"] as! String
+                let number = address[0]["short_name"] as! String
+                let street = address[1]["short_name"] as! String
+                let city = address[2]["short_name"] as! String
+                let state = address[4]["short_name"] as! String
+                let zip = address[6]["short_name"] as! String
             }
         }
+    }
+    
+    func getPlaceFromMarker(marker: GMSMarker) -> Place {
+        let place = Place()
+        
+        let coordinates = CLLocationCoordinate2DMake(marker.position.latitude, marker.position.longitude)
+        let url = NSURL(string: "\(baseUrl)latlng=\(coordinates.latitude),\(coordinates.longitude)&key=\(Server_API_Key)")
+        let data = NSData(contentsOfURL: url!)
+        let json = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments) as! NSDictionary
+        if let result = json["results"] as? NSArray {
+            if let address = result[0]["address_components"] as? NSArray {
+                place.name = marker.title
+                place.latitude = marker.position.latitude
+                place.longitude = marker.position.longitude
+                place.ID = result[11]["place_id"] as! String
+                place.strNumber = address[0]["short_name"] as! String
+                place.street = address[1]["short_name"] as! String
+                place.city = address[2]["short_name"] as! String
+                place.country = result[10]["formatted_address"] as! String
+                place.zip = address[6]["short_name"] as! String
+            }
+        }
+        return place
     }
 
     // action methods
@@ -204,7 +239,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
             
             if let place = place {
                 let coordinates = CLLocationCoordinate2DMake(place.coordinate.latitude, place.coordinate.longitude)
-                self.getAddressFromCoordinates(coordinates)
+                //self.getAddressFromCoordinates(coordinates)
                 let marker = GMSMarker(position: coordinates)
                 marker.title = place.name
                 marker.icon = UIImage(named: "pin")

@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '7EAF77BCEA72FBF69B4D3CA9'
+               BlueprintIdentifier = '4C4A5D88AF54E3ADBFAD82C8'
                BlueprintName = 'DCKit'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'DCKit.framework'>

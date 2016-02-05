@@ -10,10 +10,16 @@ import UIKit
 
 class Place: NSObject {
 
+    var ID: String!
+    var latitude: CLLocationDegrees!
+    var longitude: CLLocationDegrees!
     var name: String!
-    var address: String!
+    var street: String!
+    var strNumber: String!
     var city: String!
+    var country: String!
+    var zip: String!
     var accessibilityLevel: Float!
-    var WCaccess: Float!
+    var WC_Access: Float!
     
 }
