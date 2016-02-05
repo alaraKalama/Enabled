@@ -152,10 +152,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
 
     // action methods
     func mapView(mapView: GMSMapView!, didTapInfoWindowOfMarker marker: GMSMarker!) {
+        let placeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("PlaceViewController") as! PlaceViewController
+        self.navigationController?.pushViewController(placeViewController, animated: true)
         print("tap didTapInfoWindowOfMarker")
     }
     
     func mapView(mapView: GMSMapView!, didLongPressInfoWindowOfMarker marker: GMSMarker!) {
+        //TODO: add Siri support to read this information
         print("tap didLongPressInfoWindowOfMarker")
     }
 

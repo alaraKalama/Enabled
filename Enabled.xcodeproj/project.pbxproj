@@ -21,6 +21,8 @@
 		263692351C60159100167EBE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 263692341C60159100167EBE /* QuartzCore.framework */; };
 		263692371C60159800167EBE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 263692361C60159800167EBE /* SystemConfiguration.framework */; };
 		266BB5F91C616796000143FB /* SearchResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266BB5F81C616796000143FB /* SearchResultController.swift */; };
+		268C69451C64C3A9000900E2 /* PlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268C69441C64C3A9000900E2 /* PlaceViewController.swift */; };
+		268C69471C64C6D5000900E2 /* RatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268C69461C64C6D5000900E2 /* RatingViewController.swift */; };
 		2698875A1C63737D00910A78 /* CustomInfoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 269887591C63737D00910A78 /* CustomInfoWindow.xib */; };
 		2698875C1C63738C00910A78 /* CustomInfoWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2698875B1C63738C00910A78 /* CustomInfoWindow.swift */; };
 		2698879B1C641AC100910A78 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2698879A1C641AC100910A78 /* Place.swift */; };
@@ -71,6 +73,8 @@
 		266BB5F81C616796000143FB /* SearchResultController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultController.swift; sourceTree = "<group>"; };
 		266BB5FA1C6184A8000143FB /* bg-BG */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "bg-BG"; path = "bg-BG.lproj/Main.strings"; sourceTree = "<group>"; };
 		266BB5FB1C6184A8000143FB /* bg-BG */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "bg-BG"; path = "bg-BG.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		268C69441C64C3A9000900E2 /* PlaceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceViewController.swift; sourceTree = "<group>"; };
+		268C69461C64C6D5000900E2 /* RatingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingViewController.swift; sourceTree = "<group>"; };
 		269887591C63737D00910A78 /* CustomInfoWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomInfoWindow.xib; sourceTree = "<group>"; };
 		2698875B1C63738C00910A78 /* CustomInfoWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomInfoWindow.swift; sourceTree = "<group>"; };
 		2698879A1C641AC100910A78 /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
@@ -153,6 +157,8 @@
 			children = (
 				26D4CCDC1C61023C00319386 /* MapViewController.swift */,
 				266BB5F81C616796000143FB /* SearchResultController.swift */,
+				268C69441C64C3A9000900E2 /* PlaceViewController.swift */,
+				268C69461C64C6D5000900E2 /* RatingViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -457,11 +463,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				268C69451C64C3A9000900E2 /* PlaceViewController.swift in Sources */,
 				266BB5F91C616796000143FB /* SearchResultController.swift in Sources */,
 				26D4CCDD1C61023C00319386 /* MapViewController.swift in Sources */,
 				2698879B1C641AC100910A78 /* Place.swift in Sources */,
 				2698875C1C63738C00910A78 /* CustomInfoWindow.swift in Sources */,
 				26D4CCE01C61534A00319386 /* MapTasks.swift in Sources */,
+				268C69471C64C6D5000900E2 /* RatingViewController.swift in Sources */,
 				26F65C851C6010DC005E4A4F /* AppDelegate.swift in Sources */,
 				26F65C8D1C6010DC005E4A4F /* Enabled.xcdatamodeld in Sources */,
 			);
