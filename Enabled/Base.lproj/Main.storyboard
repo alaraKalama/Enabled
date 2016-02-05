@@ -159,7 +159,7 @@
         <scene sceneID="7X8-QE-bng">
             <objects>
                 <navigationController toolbarHidden="NO" id="i2y-7N-IK7" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="z7u-cF-dJp">
+                    <navigationBar key="navigationBar" opaque="NO" contentMode="scaleToFill" id="z7u-cF-dJp">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.9529411793" green="0.61176472900000001" blue="0.070588238540000001" alpha="0.5" colorSpace="calibratedRGB"/>

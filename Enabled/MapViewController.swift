@@ -20,6 +20,9 @@ self.presentViewController(viewController, animated: true, completion: nil)
 
 class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureRecognizerDelegate, UISearchBarDelegate, GMSMapViewDelegate, LocateOnTheMap {
     
+    let baseUrl = "https://maps.googleapis.com/maps/api/geocode/json?"
+    let Server_API_Key = "AIzaSyAw6LWaEEer7HnOElj04hShipbibHzCtQM"
+
     @IBOutlet weak var viewMap: GMSMapView!
     
     @IBOutlet weak var bbFindAddress: UIBarButtonItem!
@@ -57,7 +60,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        viewMap.animateToZoom(25.0)
+        viewMap.animateToZoom(13.0)
         viewMap.addObserver(self, forKeyPath: "myLocation", options: NSKeyValueObservingOptions.New , context: nil)
         searchResultController = SearchResultController()
         searchResultController.delegate = self
@@ -66,7 +69,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if !didFindMyLocation {
             let myLocation: CLLocation = change![NSKeyValueChangeNewKey] as! CLLocation
-            viewMap.camera = GMSCameraPosition.cameraWithTarget(myLocation.coordinate, zoom: 18.0)
+            viewMap.camera = GMSCameraPosition.cameraWithTarget(myLocation.coordinate, zoom: 13.0)
             viewMap.delegate = self
             self.latitude = myLocation.coordinate.latitude
             self.longitude = myLocation.coordinate.longitude
@@ -99,11 +102,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
     func locateWithLongitude(lon: Double, andLatitude lat: Double, andTitle title: String) {
         dispatch_async(dispatch_get_main_queue()) { () -> Void in
             let position = CLLocationCoordinate2DMake(lat, lon)
+            self.getAddressFromCoordinates(position)
             let marker = GMSMarker(position: position)
-            let camera  = GMSCameraPosition.cameraWithLatitude(lat, longitude: lon, zoom: 18.0)
+            let camera  = GMSCameraPosition.cameraWithLatitude(lat, longitude: lon, zoom: 13.0)
             self.viewMap.camera = camera
             marker.icon = UIImage(named: "pin")
-            marker.snippet = "Accessibility: 10%\nWC access: NO"
             marker.title = title
             marker.map = self.viewMap
         }
@@ -130,7 +133,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
     //allow the app to use the custom info window
     func mapView(mapView: GMSMapView!, markerInfoWindow marker: GMSMarker!) -> UIView! {
         self.infoWindow = NSBundle.mainBundle().loadNibNamed("CustomInfoWindow", owner: self, options: nil)[0] as! CustomInfoWindow
-        self.infoWindow.placeName.text = "Text Name"
+        self.infoWindow.placeName.text = marker.title
         self.infoWindow.accessibilityLevel.text = "100%"
         self.infoWindow.WCaccessLevel.text = "NO"
         self.infoWindow.userInteractionEnabled = true
@@ -149,6 +152,25 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
         let location2 = CLLocation(latitude: coord2.latitude, longitude: coord2.longitude)
         return location1.distanceFromLocation(location2)
     }
+    
+    func getAddressFromCoordinates(coordinates: CLLocationCoordinate2D) {
+        print("inside getAddressFromCoordinates")
+        let url = NSURL(string: "\(baseUrl)latlng=\(coordinates.latitude),\(coordinates.longitude)&key=\(Server_API_Key)")
+        let data = NSData(contentsOfURL: url!)
+        let json = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments) as! NSDictionary
+        print("url, data, json")
+        //print(json)
+        if let result = json["results"] as? NSArray {
+            if let address = result[0]["address_components"] as? NSArray {
+                let number = address[0]["short_name"] as! String
+                let street = address[1]["short_name"] as! String
+                let city = address[2]["short_name"] as! String
+                let state = address[4]["short_name"] as! String
+                let zip = address[6]["short_name"] as! String
+                print("\n\(number) \(street), \(city), \(state) \(zip)")
+            }
+        }
+    }
 
     // action methods
     func mapView(mapView: GMSMapView!, didTapInfoWindowOfMarker marker: GMSMarker!) {
@@ -165,6 +187,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
     @IBAction func searchNearbyPlaces(sender: AnyObject) {
         print("Search")
         let position = CLLocationCoordinate2DMake(self.latitude, self.longitude)
+        
         let northEast = CLLocationCoordinate2DMake(position.latitude + 0.001, position.longitude + 0.001)
         let southWest = CLLocationCoordinate2DMake(position.latitude - 0.001, position.longitude - 0.001)
         let viewport = GMSCoordinateBounds(coordinate: northEast, coordinate: southWest)
@@ -180,13 +203,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
             
             if let place = place {
                 let coordinates = CLLocationCoordinate2DMake(place.coordinate.latitude, place.coordinate.longitude)
+                self.getAddressFromCoordinates(coordinates)
                 let marker = GMSMarker(position: coordinates)
                 marker.title = place.name
                 marker.icon = UIImage(named: "pin")
                 marker.map = self.viewMap
                 //TODO: Add a picked place to Firebase
                 self.viewMap.animateToLocation(coordinates)
-                self.viewMap.animateToZoom(18.0)
+                self.viewMap.animateToZoom(13.0)
             }
             else {
                 print("No place was selected")
@@ -198,7 +222,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
         print("find")
         let searchController = UISearchController(searchResultsController: searchResultController)
         searchController.searchBar.delegate = self
-        //TODO: Add a picked place to Firebase
         self.presentViewController(searchController, animated: true, completion: nil)
     }
 }

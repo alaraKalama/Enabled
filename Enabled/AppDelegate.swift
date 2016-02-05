@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         GMSServices.provideAPIKey(Google_Places_API_Key)
+        UIBarButtonItem.appearance().setBackButtonBackgroundImage(UIImage(named: ""), forState: UIControlState.Normal, barMetrics: UIBarMetrics.Default)
         return true
     }
 
