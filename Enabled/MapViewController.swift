@@ -34,6 +34,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
     var locationManager = CLLocationManager()
     var didFindMyLocation = false
     var currentGMSPlacePicked: GMSPlace!
+    var currentPlacePicked: Place!
     var placePicker: GMSPlacePicker!
     var currentLocation: CLLocation!
     var latitude: Double!
@@ -143,7 +144,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
     
     //allow the app to use the custom info window
     func mapView(mapView: GMSMapView!, markerInfoWindow marker: GMSMarker!) -> UIView! {
-        let place = Place.PlaceFromGMSPlace(self.currentGMSPlacePicked)
+        let place = currentPlacePicked
         self.infoWindow = NSBundle.mainBundle().loadNibNamed("CustomInfoWindow", owner: self, options: nil)[0] as! CustomInfoWindow
         self.infoWindow.placeName.text = place.name
         self.infoWindow.accessibilityLevel.text = String(format: "%.1f%%", place.accessibilityLevel)
@@ -153,7 +154,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
         self.infoWindow.userInteractionEnabled = true
         self.tapGestureRecognizer.delegate = self.infoWindow
         self.infoWindow.addGestureRecognizer(self.tapGestureRecognizer)
-        //TODO: method to generate this string
         let speechText = "\(place.name) is \(distance) from here. Accessibility is \(place.accessibilityLevel)%. The restroom access is \(place.WC_Access)%"
         self.speech = SpeechTask.init(text: speechText)
         return self.infoWindow
@@ -170,26 +170,26 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
         return location1.distanceFromLocation(location2)
     }
     
-    func getPlaceFromMarker(marker: GMSMarker) -> Place {
-        let place = Place()
-        let coordinates = CLLocationCoordinate2DMake(marker.position.latitude, marker.position.longitude)
-        let url = NSURL(string: "\(baseUrl)latlng=\(coordinates.latitude),\(coordinates.longitude)&key=\(Server_API_Key)")
-        let data = NSData(contentsOfURL: url!)
-        let json = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments) as! NSDictionary
-        if let result = json["results"] as? NSArray {
-            if let address = result[0]["address_components"] as? NSArray {
-                place.ID = currentGMSPlacePicked.placeID
-                place.types = currentGMSPlacePicked.types
-                place.name = currentGMSPlacePicked.name
-                place.latitude = currentGMSPlacePicked.coordinate.latitude
-                place.longitude = currentGMSPlacePicked.coordinate.longitude
-                print(currentGMSPlacePicked.formattedAddress)
-                print(currentGMSPlacePicked.coordinate)
-                FirebaseRef.savePlaceToFirebase(place)
-            }
-        }
-        return place
-    }
+//    func getPlaceFromMarker(marker: GMSMarker) -> Place {
+//        let place = Place()
+//        let coordinates = CLLocationCoordinate2DMake(marker.position.latitude, marker.position.longitude)
+//        let url = NSURL(string: "\(baseUrl)latlng=\(coordinates.latitude),\(coordinates.longitude)&key=\(Server_API_Key)")
+//        let data = NSData(contentsOfURL: url!)
+//        let json = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments) as! NSDictionary
+//        if let result = json["results"] as? NSArray {
+//            if let address = result[0]["address_components"] as? NSArray {
+//                place.ID = currentGMSPlacePicked.placeID
+//                place.types = currentGMSPlacePicked.types
+//                place.name = currentGMSPlacePicked.name
+//                place.latitude = currentGMSPlacePicked.coordinate.latitude
+//                place.longitude = currentGMSPlacePicked.coordinate.longitude
+//                print(currentGMSPlacePicked.formattedAddress)
+//                print(currentGMSPlacePicked.coordinate)
+//                FirebaseRef.savePlaceToFirebase(place)
+//            }
+//        }
+//        return place
+//    }
 
     // action methods
     func mapView(mapView: GMSMapView!, didTapInfoWindowOfMarker marker: GMSMarker!) {
@@ -222,12 +222,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
             if let place = place {
                 self.viewMap.clear()
                 self.currentGMSPlacePicked = place
+                let p = Place.PlaceFromGMSPlace(self.currentGMSPlacePicked)
+                self.FirebaseRef.placeExistsInFirebase(p, listener: self)
                 let coordinates = CLLocationCoordinate2DMake(place.coordinate.latitude, place.coordinate.longitude)
                 let marker = GMSMarker(position: coordinates)
                 marker.title = place.name
                 marker.icon = UIImage(named: "pin")
                 marker.map = self.viewMap
-                //TODO: Add a picked place to Firebase
                 self.viewMap.animateToLocation(coordinates)
                 self.viewMap.animateToZoom(13.0)
             }

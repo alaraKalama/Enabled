@@ -7,16 +7,17 @@
 //
 
 import UIKit
+import Firebase
 
 class Place: NSObject {
 
     var ID: String!
+    var name: String!
     var latitude: CLLocationDegrees!
     var longitude: CLLocationDegrees!
-    var name: String!
     var formattedAddress: String!
     var types: [AnyObject]!
-    var numberOfVoter: NSInteger!
+    var numberOfVoter: Int!
     var accessibilityLevel: Float!
     var WC_Access: Float!
     
@@ -24,17 +25,28 @@ class Place: NSObject {
         self.types = []
     }
     
+    class func PlaceFromDataSnapshot(snap: FDataSnapshot) -> Place{
+        let place = Place()
+        place.ID = snap.value["ID"] as? String
+        place.name = snap.value["name"] as? String
+        place.latitude = snap.value["latitude"] as? CLLocationDegrees
+        place.longitude = snap.value["longitude"] as? CLLocationDegrees
+        place.formattedAddress = snap.value["formattedAddress"] as? String
+        place.numberOfVoter = snap.value["numberOfVoter"] as? Int
+        place.accessibilityLevel = snap.value["accessibilityLevel"] as? Float
+        place.WC_Access = snap.value["WC_Access"] as? Float
+        //TODO - work with types
+        return place
+    }
+    
     class func PlaceFromGMSPlace(gmsPlace: GMSPlace) -> Place {
         let place = Place()
         place.ID = gmsPlace.placeID
-        place.types = gmsPlace.types
         place.name = gmsPlace.name
-        place.formattedAddress = gmsPlace.formattedAddress
         place.latitude = gmsPlace.coordinate.latitude
         place.longitude = gmsPlace.coordinate.longitude
+        place.formattedAddress = gmsPlace.formattedAddress
         place.types = gmsPlace.types
-        place.accessibilityLevel = 40.5
-        place.WC_Access = 0
         return place
     }
     

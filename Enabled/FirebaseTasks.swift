@@ -27,11 +27,18 @@ class FirebaseTasks: NSObject {
     }
     
     func placeExistsInFirebase(place: Place, listener: MapViewController) {
-        places.childByAppendingPath(place.ID).observeSingleEventOfType(.Value, withBlock: {snap in
-            if(snap == nil){
+        let refPlace = places.childByAppendingPath(place.ID)
+        refPlace.observeSingleEventOfType(.Value, withBlock: {snap in
+            print(snap)
+            if(snap.value is NSNull){
+                place.numberOfVoter = 0
+                place.accessibilityLevel = 0
+                place.WC_Access = 0
                 self.savePlaceToFirebase(place)
+                listener.currentPlacePicked = place
             }
             else {
+                listener.currentPlacePicked = Place.PlaceFromDataSnapshot(snap)
             }
         })
     }
