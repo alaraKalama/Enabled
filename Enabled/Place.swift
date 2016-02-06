@@ -18,9 +18,14 @@ class Place: NSObject {
     var strNumber: String!
     var city: String!
     var country: String!
+    var types: [AnyObject]!
     var numberOfVoter: NSInteger!
     var accessibilityLevel: Float!
     var WC_Access: Float!
+    
+    override init() {
+        self.types = []
+    }
     
     func placeAsDictionaty() -> NSMutableDictionary{
         let dict = NSMutableDictionary.init(capacity: 12)
@@ -35,6 +40,7 @@ class Place: NSObject {
         dict.setValue(self.numberOfVoter, forKey: "numberOfVoter")
         dict.setValue(self.accessibilityLevel, forKey: "accessibilityLevel")
         dict.setValue(self.WC_Access, forKey: "WC_Access")
+        dict.setValue(self.types, forKey: "types")
         return dict
     }
 }

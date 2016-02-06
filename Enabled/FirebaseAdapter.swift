@@ -26,9 +26,16 @@ class FirebaseAdapter: NSObject {
         placeRef.setValue(placeDict)
     }
     
-    func placeExistsInFirebase(id: String) {
-        places.observeEventType(FEventType.ChildChanged, withBlock: {(snapshot) in
-            
+    func placeExistsInFirebase(id: String) -> Bool {
+        var exists = false
+        places.childByAppendingPath(id).observeSingleEventOfType(.Value, withBlock: {snap in
+            if(snap == nil){
+                exists = false
+            }
+            else {
+                exists = true
+            }
         })
+        return exists
     }
 }

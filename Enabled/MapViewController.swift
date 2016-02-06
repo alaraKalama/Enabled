@@ -178,7 +178,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
         if let result = json["results"] as? NSArray {
             if let address = result[0]["address_components"] as? NSArray {
                 place.ID = currentPlacePicked.placeID
-                place.name = marker.title
+                place.types = currentPlacePicked.types
+                place.name = currentPlacePicked.name
                 place.latitude = marker.position.latitude
                 place.longitude = marker.position.longitude
                 place.strNumber = address[0]["short_name"] as! String
