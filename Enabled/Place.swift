@@ -14,10 +14,7 @@ class Place: NSObject {
     var latitude: CLLocationDegrees!
     var longitude: CLLocationDegrees!
     var name: String!
-    var street: String!
-    var strNumber: String!
-    var city: String!
-    var country: String!
+    var formattedAddress: String!
     var types: [AnyObject]!
     var numberOfVoter: NSInteger!
     var accessibilityLevel: Float!
@@ -27,16 +24,27 @@ class Place: NSObject {
         self.types = []
     }
     
+    class func PlaceFromGMSPlace(gmsPlace: GMSPlace) -> Place {
+        let place = Place()
+        place.ID = gmsPlace.placeID
+        place.types = gmsPlace.types
+        place.name = gmsPlace.name
+        place.formattedAddress = gmsPlace.formattedAddress
+        place.latitude = gmsPlace.coordinate.latitude
+        place.longitude = gmsPlace.coordinate.longitude
+        place.types = gmsPlace.types
+        place.accessibilityLevel = 40.5
+        place.WC_Access = 0
+        return place
+    }
+    
     func placeAsDictionaty() -> NSMutableDictionary{
         let dict = NSMutableDictionary.init(capacity: 12)
         dict.setValue(self.ID, forKey: "ID")
         dict.setValue(self.name, forKey: "name")
         dict.setValue(self.latitude, forKey: "latitude")
         dict.setValue(self.longitude, forKey: "longitude")
-        dict.setValue(self.street, forKey: "street")
-        dict.setValue(self.strNumber, forKey: "strNumber")
-        dict.setValue(self.city, forKey: "city")
-        dict.setValue(self.country, forKey: "country")
+        dict.setValue(self.formattedAddress, forKey: "formattedAddress")
         dict.setValue(self.numberOfVoter, forKey: "numberOfVoter")
         dict.setValue(self.accessibilityLevel, forKey: "accessibilityLevel")
         dict.setValue(self.WC_Access, forKey: "WC_Access")

@@ -28,13 +28,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
     @IBOutlet weak var lblInfo: UILabel!
     @IBOutlet weak var infoWindow: CustomInfoWindow!
 
-    var FirebaseRef: FirebaseAdapter!
+    var FirebaseRef: FirebaseTasks!
     var speech: SpeechTask!
     var tapGestureRecognizer: UITapGestureRecognizer!
     var locationManager = CLLocationManager()
     var didFindMyLocation = false
-    var currentPlacePicked: GMSPlace!
+    var currentGMSPlacePicked: GMSPlace!
     var placePicker: GMSPlacePicker!
+    var currentLocation: CLLocation!
     var latitude: Double!
     var longitude: Double!
     var locationMarker: GMSMarker!
@@ -61,7 +62,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        FirebaseRef = FirebaseAdapter.init()
+        FirebaseRef = FirebaseTasks.init()
         viewMap.animateToZoom(13.0)
         viewMap.addObserver(self, forKeyPath: "myLocation", options: NSKeyValueObservingOptions.New , context: nil)
         searchResultController = SearchResultController()
@@ -80,6 +81,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if !didFindMyLocation {
             let myLocation: CLLocation = change![NSKeyValueChangeNewKey] as! CLLocation
+            currentLocation = myLocation
             viewMap.camera = GMSCameraPosition.cameraWithTarget(myLocation.coordinate, zoom: 13.0)
             viewMap.delegate = self
             self.latitude = myLocation.coordinate.latitude
@@ -141,17 +143,19 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
     
     //allow the app to use the custom info window
     func mapView(mapView: GMSMapView!, markerInfoWindow marker: GMSMarker!) -> UIView! {
-        let place = getPlaceFromMarker(marker)
-        //check place in firebase
-        //update place info
+        let place = Place.PlaceFromGMSPlace(self.currentGMSPlacePicked)
         self.infoWindow = NSBundle.mainBundle().loadNibNamed("CustomInfoWindow", owner: self, options: nil)[0] as! CustomInfoWindow
-        self.infoWindow.placeName.text = marker.title
+        self.infoWindow.placeName.text = place.name
+        self.infoWindow.accessibilityLevel.text = String(format: "%.1f%%", place.accessibilityLevel)
+        self.infoWindow.WCaccessLevel.text = String(format: "%.1f%%", place.WC_Access)
+        let distance = String(format: "%.0f m", getDistanceMetresBetweenLocationCoordinates(currentGMSPlacePicked.coordinate, coord2: self.currentLocation.coordinate))
+        self.infoWindow.distance.text = distance
         self.infoWindow.userInteractionEnabled = true
         self.tapGestureRecognizer.delegate = self.infoWindow
         self.infoWindow.addGestureRecognizer(self.tapGestureRecognizer)
         //TODO: method to generate this string
-        let strText = "\(place.name) is 250 metres from here. Accessibility is 40% and the restroom access is 90%"
-        self.speech = SpeechTask.init(text: strText)
+        let speechText = "\(place.name) is \(distance) from here. Accessibility is \(place.accessibilityLevel)%. The restroom access is \(place.WC_Access)%"
+        self.speech = SpeechTask.init(text: speechText)
         return self.infoWindow
     }
     
@@ -169,23 +173,18 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
     func getPlaceFromMarker(marker: GMSMarker) -> Place {
         let place = Place()
         let coordinates = CLLocationCoordinate2DMake(marker.position.latitude, marker.position.longitude)
-        print(currentPlacePicked)
-        //
         let url = NSURL(string: "\(baseUrl)latlng=\(coordinates.latitude),\(coordinates.longitude)&key=\(Server_API_Key)")
         let data = NSData(contentsOfURL: url!)
         let json = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments) as! NSDictionary
-        //print(json)
         if let result = json["results"] as? NSArray {
             if let address = result[0]["address_components"] as? NSArray {
-                place.ID = currentPlacePicked.placeID
-                place.types = currentPlacePicked.types
-                place.name = currentPlacePicked.name
-                place.latitude = marker.position.latitude
-                place.longitude = marker.position.longitude
-                place.strNumber = address[0]["short_name"] as! String
-                place.street = address[1]["short_name"] as! String
-                place.city = address[2]["short_name"] as! String
-                place.country = address[address.count-2]["long_name"] as! String
+                place.ID = currentGMSPlacePicked.placeID
+                place.types = currentGMSPlacePicked.types
+                place.name = currentGMSPlacePicked.name
+                place.latitude = currentGMSPlacePicked.coordinate.latitude
+                place.longitude = currentGMSPlacePicked.coordinate.longitude
+                print(currentGMSPlacePicked.formattedAddress)
+                print(currentGMSPlacePicked.coordinate)
                 FirebaseRef.savePlaceToFirebase(place)
             }
         }
@@ -222,7 +221,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
             
             if let place = place {
                 self.viewMap.clear()
-                self.currentPlacePicked = place
+                self.currentGMSPlacePicked = place
                 let coordinates = CLLocationCoordinate2DMake(place.coordinate.latitude, place.coordinate.longitude)
                 let marker = GMSMarker(position: coordinates)
                 marker.title = place.name

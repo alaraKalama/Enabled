@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class FirebaseAdapter: NSObject {
+class FirebaseTasks: NSObject {
 
     var root: Firebase!
     var places: Firebase!
@@ -26,16 +26,13 @@ class FirebaseAdapter: NSObject {
         placeRef.setValue(placeDict)
     }
     
-    func placeExistsInFirebase(id: String) -> Bool {
-        var exists = false
-        places.childByAppendingPath(id).observeSingleEventOfType(.Value, withBlock: {snap in
+    func placeExistsInFirebase(place: Place, listener: MapViewController) {
+        places.childByAppendingPath(place.ID).observeSingleEventOfType(.Value, withBlock: {snap in
             if(snap == nil){
-                exists = false
+                self.savePlaceToFirebase(place)
             }
             else {
-                exists = true
             }
         })
-        return exists
     }
 }
