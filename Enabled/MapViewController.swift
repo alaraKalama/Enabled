@@ -173,7 +173,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
         let json = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments) as! NSDictionary
         if let result = json["results"] as? NSArray {
             if let address = result[0]["address_components"] as? NSArray {
-                let placeID = result[11]["place_id"] as! String
+                let placeID = result[result.count - 1]["place_id"] as! String
                 let number = address[0]["short_name"] as! String
                 let street = address[1]["short_name"] as! String
                 let city = address[2]["short_name"] as! String
@@ -195,7 +195,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
                 place.name = marker.title
                 place.latitude = marker.position.latitude
                 place.longitude = marker.position.longitude
-                place.ID = result[11]["place_id"] as! String
+                place.ID = result[result.count - 1]["place_id"] as! String
                 place.strNumber = address[0]["short_name"] as! String
                 place.street = address[1]["short_name"] as! String
                 place.city = address[2]["short_name"] as! String
