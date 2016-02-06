@@ -51,6 +51,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
         //ask for permission to access current location
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
+        locationManager.startUpdatingHeading()
         
         //gesture recognizer code
         self.tapGestureRecognizer = UITapGestureRecognizer(target: self.infoWindow, action: "tapResponder")
@@ -178,7 +179,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
                 let street = address[1]["short_name"] as! String
                 let city = address[2]["short_name"] as! String
                 let state = address[4]["short_name"] as! String
-                let zip = address[6]["short_name"] as! String
+                //let zip = address[6]["short_name"] as! String
             }
         }
     }
@@ -190,6 +191,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
         let url = NSURL(string: "\(baseUrl)latlng=\(coordinates.latitude),\(coordinates.longitude)&key=\(Server_API_Key)")
         let data = NSData(contentsOfURL: url!)
         let json = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments) as! NSDictionary
+        print(json)
         if let result = json["results"] as? NSArray {
             if let address = result[0]["address_components"] as? NSArray {
                 place.name = marker.title
@@ -199,8 +201,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
                 place.strNumber = address[0]["short_name"] as! String
                 place.street = address[1]["short_name"] as! String
                 place.city = address[2]["short_name"] as! String
-                place.country = result[10]["formatted_address"] as! String
-                place.zip = address[6]["short_name"] as! String
+                place.country = address[address.count-2]["long_name"] as! String
+                print(place.country)
             }
         }
         return place
