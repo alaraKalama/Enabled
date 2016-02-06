@@ -29,6 +29,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
     @IBOutlet weak var infoWindow: CustomInfoWindow!
 
     var FirebaseRef: FirebaseAdapter!
+    var speech: SpeechTask!
     var tapGestureRecognizer: UITapGestureRecognizer!
     var locationManager = CLLocationManager()
     var didFindMyLocation = false
@@ -148,6 +149,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
         self.infoWindow.userInteractionEnabled = true
         self.tapGestureRecognizer.delegate = self.infoWindow
         self.infoWindow.addGestureRecognizer(self.tapGestureRecognizer)
+        //TODO: method to generate this string
+        let strText = "\(place.name) is 250 metres from here. Accessibility is 40% and the restroom access is 90%"
+        self.speech = SpeechTask.init(text: strText)
         return self.infoWindow
     }
     
@@ -195,7 +199,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
     }
     
     func mapView(mapView: GMSMapView!, didLongPressInfoWindowOfMarker marker: GMSMarker!) {
-        //TODO: add Siri support to read this information
+        self.speech.speak()
+        //self.speech.speakText(speech.textToSpeak)
         print("tap didLongPressInfoWindowOfMarker")
     }
 
