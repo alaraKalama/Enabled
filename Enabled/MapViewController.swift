@@ -147,8 +147,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
         let place = getPlaceFromMarker(marker)
         //check place in firebase
         //update place info
-        print("COUNTRY")
-        print(place.country)
         self.infoWindow = NSBundle.mainBundle().loadNibNamed("CustomInfoWindow", owner: self, options: nil)[0] as! CustomInfoWindow
         self.infoWindow.placeName.text = marker.title
         self.infoWindow.userInteractionEnabled = true

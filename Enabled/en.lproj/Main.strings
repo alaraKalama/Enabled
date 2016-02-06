@@ -1,0 +1,21 @@
+
+/* Class = "UILabel"; text = "WC access:"; ObjectID = "9eg-3C-fzg"; */
+"9eg-3C-fzg.text" = "WC access:";
+
+/* Class = "UIViewController"; title = "PlaceViewController"; ObjectID = "AJc-mo-ki6"; */
+"AJc-mo-ki6.title" = "PlaceViewController";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Awc-Je-8ZF"; */
+"Awc-Je-8ZF.text" = "Label";
+
+/* Class = "UILabel"; text = "Place Name"; ObjectID = "GL1-H5-zwy"; */
+"GL1-H5-zwy.text" = "Place Name";
+
+/* Class = "UIButton"; normalTitle = "Rate"; ObjectID = "Q2z-S7-HK2"; */
+"Q2z-S7-HK2.normalTitle" = "Rate";
+
+/* Class = "UILabel"; text = "Accessibility:"; ObjectID = "hvH-RA-3dK"; */
+"hvH-RA-3dK.text" = "Accessibility:";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "p6c-iR-Ger"; */
+"p6c-iR-Ger.text" = "Label";

@@ -10,9 +10,13 @@ import UIKit
 
 class PlaceViewController: UIViewController {
 
+    @IBOutlet var name: UILabel!
+    @IBOutlet var accessibility: UILabel!
+    @IBOutlet var WCAccess: UILabel!
+    @IBOutlet var imageView: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
 
@@ -22,6 +26,28 @@ class PlaceViewController: UIViewController {
     }
     
     @IBAction func ratePlace(sender: AnyObject) {
+        
+    }
+    
+    @IBAction func tappedOnImage(sender: AnyObject) {
+        print("tapped on image")
+    }
+    
+    @IBAction func slideOnImage(sender: AnyObject) {
+        print("slide on image")
+    }
+    
+    override func willRotateToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
+        if (toInterfaceOrientation.isLandscape) {
+            UIView.animateWithDuration(0.1, delay: 0.1, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+                self.imageView.alpha = 0.0
+                }, completion: nil)
+        }
+        else {
+            UIView.animateWithDuration(0.4, delay: 0.4, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+                self.imageView.alpha = 1.0
+                }, completion: nil)
+        }
         
     }
 
