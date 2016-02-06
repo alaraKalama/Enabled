@@ -177,7 +177,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
         //print(json)
         if let result = json["results"] as? NSArray {
             if let address = result[0]["address_components"] as? NSArray {
-                place.ID = result[result.count - 1]["place_id"] as! String
+                place.ID = currentPlacePicked.placeID
                 place.name = marker.title
                 place.latitude = marker.position.latitude
                 place.longitude = marker.position.longitude
@@ -195,14 +195,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
     func mapView(mapView: GMSMapView!, didTapInfoWindowOfMarker marker: GMSMarker!) {
         let placeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("PlaceViewController") as! PlaceViewController
         self.navigationController?.pushViewController(placeViewController, animated: true)
-        print("tap didTapInfoWindowOfMarker")
     }
     
     func mapView(mapView: GMSMapView!, didLongPressInfoWindowOfMarker marker: GMSMarker!) {
         self.speech.speak()
-        //self.speech.speakText(speech.textToSpeak)
-        print("tap didLongPressInfoWindowOfMarker")
     }
+    
+    
 
     @IBAction func searchNearbyPlaces(sender: AnyObject) {
         print("Search")
@@ -237,11 +236,4 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
             }
         }
     }
-    
-//    @IBAction func findAddress(sender: AnyObject) {
-//        print("find")
-//        let searchController = UISearchController(searchResultsController: searchResultController)
-//        searchController.searchBar.delegate = self
-//        self.presentViewController(searchController, animated: true, completion: nil)
-//    }
 }

@@ -43,5 +43,8 @@
         NSLog(@"%@", utterance);
         [self.synthesizer speakUtterance:utterance];
     }
+    else {
+        [self.synthesizer stopSpeakingAtBoundary:AVSpeechBoundaryWord];
+    }
 }
 @end
