@@ -28,6 +28,7 @@
 		2698879B1C641AC100910A78 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2698879A1C641AC100910A78 /* Place.swift */; };
 		26D4CCDD1C61023C00319386 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D4CCDC1C61023C00319386 /* MapViewController.swift */; };
 		26D4CCE01C61534A00319386 /* MapTasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D4CCDF1C61534A00319386 /* MapTasks.swift */; };
+		26E1B3CB1C660E5D009F5C24 /* FirebaseAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E1B3CA1C660E5D009F5C24 /* FirebaseAdapter.swift */; };
 		26F65C851C6010DC005E4A4F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F65C841C6010DC005E4A4F /* AppDelegate.swift */; };
 		26F65C8A1C6010DC005E4A4F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26F65C881C6010DC005E4A4F /* Main.storyboard */; };
 		26F65C8D1C6010DC005E4A4F /* Enabled.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 26F65C8B1C6010DC005E4A4F /* Enabled.xcdatamodeld */; };
@@ -83,6 +84,7 @@
 		26E1B3C61C65823D009F5C24 /* bg */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = bg; path = bg.lproj/Main.strings; sourceTree = "<group>"; };
 		26E1B3C71C65823D009F5C24 /* bg */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = bg; path = bg.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		26E1B3C91C6582DA009F5C24 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		26E1B3CA1C660E5D009F5C24 /* FirebaseAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseAdapter.swift; sourceTree = "<group>"; };
 		26F65C811C6010DC005E4A4F /* Enabled.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Enabled.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26F65C841C6010DC005E4A4F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		26F65C891C6010DC005E4A4F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				26D4CCDF1C61534A00319386 /* MapTasks.swift */,
+				26E1B3CA1C660E5D009F5C24 /* FirebaseAdapter.swift */,
 			);
 			name = Tasks;
 			sourceTree = "<group>";
@@ -472,6 +475,7 @@
 				2698879B1C641AC100910A78 /* Place.swift in Sources */,
 				2698875C1C63738C00910A78 /* CustomInfoWindow.swift in Sources */,
 				26D4CCE01C61534A00319386 /* MapTasks.swift in Sources */,
+				26E1B3CB1C660E5D009F5C24 /* FirebaseAdapter.swift in Sources */,
 				268C69471C64C6D5000900E2 /* RatingViewController.swift in Sources */,
 				26F65C851C6010DC005E4A4F /* AppDelegate.swift in Sources */,
 				26F65C8D1C6010DC005E4A4F /* Enabled.xcdatamodeld in Sources */,

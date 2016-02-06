@@ -19,4 +19,6 @@ class MapTasks: NSObject {
     var fetchedFormattedAddress: String!
     var fetchedAddressLongitude: Double!
     var fetchedAddressLatitude: Double!
+    
+    
 }

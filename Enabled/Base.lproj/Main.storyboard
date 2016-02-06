@@ -4,7 +4,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Map View Controller-->
@@ -43,18 +42,11 @@
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="LF0-KK-2f7">
                         <barButtonItem key="leftBarButtonItem" image="Image" id="dRG-Rb-Tr6"/>
-                        <rightBarButtonItems>
-                            <barButtonItem image="Search" id="jSE-JK-rg3">
-                                <connections>
-                                    <action selector="findAddress:" destination="vXZ-lx-hvc" id="QBh-VI-dEI"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem image="Find" id="TEo-Yw-JOp">
-                                <connections>
-                                    <action selector="searchNearbyPlaces:" destination="vXZ-lx-hvc" id="t68-A3-Qcp"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" image="Find" id="TEo-Yw-JOp">
+                            <connections>
+                                <action selector="searchNearbyPlaces:" destination="vXZ-lx-hvc" id="t68-A3-Qcp"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -65,10 +57,10 @@
             </objects>
             <point key="canvasLocation" x="516" y="313"/>
         </scene>
-        <!--PlaceViewController-->
+        <!--Place View Controller-->
         <scene sceneID="Was-vh-dUR">
             <objects>
-                <viewController storyboardIdentifier="PlaceViewController" title="PlaceViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="AJc-mo-ki6" customClass="PlaceViewController" customModule="Enabled" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PlaceViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="AJc-mo-ki6" customClass="PlaceViewController" customModule="Enabled" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hof-YX-zfL"/>
                         <viewControllerLayoutGuide type="bottom" id="XFf-eq-dr6"/>
@@ -242,6 +234,5 @@
     <resources>
         <image name="Find" width="25" height="25"/>
         <image name="Image" width="31" height="40"/>
-        <image name="Search" width="50" height="50"/>
     </resources>
 </document>
