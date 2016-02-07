@@ -170,30 +170,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
         return location1.distanceFromLocation(location2)
     }
     
-//    func getPlaceFromMarker(marker: GMSMarker) -> Place {
-//        let place = Place()
-//        let coordinates = CLLocationCoordinate2DMake(marker.position.latitude, marker.position.longitude)
-//        let url = NSURL(string: "\(baseUrl)latlng=\(coordinates.latitude),\(coordinates.longitude)&key=\(Server_API_Key)")
-//        let data = NSData(contentsOfURL: url!)
-//        let json = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments) as! NSDictionary
-//        if let result = json["results"] as? NSArray {
-//            if let address = result[0]["address_components"] as? NSArray {
-//                place.ID = currentGMSPlacePicked.placeID
-//                place.types = currentGMSPlacePicked.types
-//                place.name = currentGMSPlacePicked.name
-//                place.latitude = currentGMSPlacePicked.coordinate.latitude
-//                place.longitude = currentGMSPlacePicked.coordinate.longitude
-//                print(currentGMSPlacePicked.formattedAddress)
-//                print(currentGMSPlacePicked.coordinate)
-//                FirebaseRef.savePlaceToFirebase(place)
-//            }
-//        }
-//        return place
-//    }
-
     // action methods
     func mapView(mapView: GMSMapView!, didTapInfoWindowOfMarker marker: GMSMarker!) {
         let placeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("PlaceViewController") as! PlaceViewController
+        placeViewController.place = currentPlacePicked
         self.navigationController?.pushViewController(placeViewController, animated: true)
     }
     

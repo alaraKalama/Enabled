@@ -29,7 +29,6 @@ class FirebaseTasks: NSObject {
     func placeExistsInFirebase(place: Place, listener: MapViewController) {
         let refPlace = places.childByAppendingPath(place.ID)
         refPlace.observeSingleEventOfType(.Value, withBlock: {snap in
-            print(snap)
             if(snap.value is NSNull){
                 place.numberOfVoter = 0
                 place.accessibilityLevel = 0

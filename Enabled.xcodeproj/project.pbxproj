@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		261700111C6057C00053F9AB /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 261700101C6057C00053F9AB /* Media.xcassets */; };
+		2628B3CB1C66D2FE009F1D85 /* RatingCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2628B3CA1C66D2FE009F1D85 /* RatingCard.swift */; };
 		263692211C60154800167EBE /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 263692201C60154800167EBE /* AVFoundation.framework */; };
 		263692231C60154E00167EBE /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 263692221C60154E00167EBE /* CoreData.framework */; };
 		263692251C60155400167EBE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 263692241C60155400167EBE /* CoreLocation.framework */; };
@@ -60,6 +61,7 @@
 /* Begin PBXFileReference section */
 		2617000E1C6015E60053F9AB /* Enabled-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Enabled-Bridging-Header.h"; sourceTree = "<group>"; };
 		261700101C6057C00053F9AB /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		2628B3CA1C66D2FE009F1D85 /* RatingCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingCard.swift; sourceTree = "<group>"; };
 		263692201C60154800167EBE /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		263692221C60154E00167EBE /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		263692241C60155400167EBE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -156,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				2698879A1C641AC100910A78 /* Place.swift */,
+				2628B3CA1C66D2FE009F1D85 /* RatingCard.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -484,6 +487,7 @@
 				26E1B3CB1C660E5D009F5C24 /* FirebaseTasks.swift in Sources */,
 				268C69471C64C6D5000900E2 /* RatingViewController.swift in Sources */,
 				26F65C851C6010DC005E4A4F /* AppDelegate.swift in Sources */,
+				2628B3CB1C66D2FE009F1D85 /* RatingCard.swift in Sources */,
 				26F65C8D1C6010DC005E4A4F /* Enabled.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
