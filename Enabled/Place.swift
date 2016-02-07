@@ -17,6 +17,8 @@ class Place: NSObject {
     var longitude: CLLocationDegrees!
     var formattedAddress: String!
     var types: [AnyObject]!
+    var images: [AnyObject]!
+    var comments: [AnyObject]!
     var numberOfVoter: Int!
     var sumOfAccessibilityVote: Int!
     var sumOfWcVote: Int!
@@ -25,6 +27,8 @@ class Place: NSObject {
     
     override init() {
         self.types = []
+        self.comments = []
+        self.images = []
     }
     
     class func PlaceFromDataSnapshot(snap: FDataSnapshot) -> Place{
@@ -39,7 +43,9 @@ class Place: NSObject {
         place.sumOfWcVote = snap.value["sumOfWcVote"] as? Int
         place.accessibilityLevel = snap.value["accessibilityLevel"] as? Float
         place.WC_Access = snap.value["WC_Access"] as? Float
-        //TODO - work with types
+        place.types = snap.value["types"] as? [AnyObject]
+        place.images = snap.value["images"] as? [AnyObject]
+        place.comments = snap.value["comments"] as? [AnyObject]
         return place
     }
     
@@ -67,6 +73,8 @@ class Place: NSObject {
         dict.setValue(self.accessibilityLevel, forKey: "accessibilityLevel")
         dict.setValue(self.WC_Access, forKey: "WC_Access")
         dict.setValue(self.types, forKey: "types")
+        dict.setValue(self.images, forKey: "images")
+        dict.setValue(self.comments, forKey: "comments")
         return dict
     }
 }

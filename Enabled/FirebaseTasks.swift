@@ -55,29 +55,52 @@ class FirebaseTasks: NSObject {
             📌.sumOfWcVote = 📌.sumOfWcVote.advancedBy(📊.WC_Rating!, limit: Int.max)
             📌.accessibilityLevel = self.findAverage(📌.sumOfAccessibilityVote, num: 📌.numberOfVoter)
             📌.WC_Access = self.findAverage(📌.sumOfWcVote, num: 📌.numberOfVoter)
-            refPlace.setValue(📌.placeAsDictionaty())
-            //print(📊.comment.isEmpty)
             
-            print("is comment nil")
-            print(📊.comment == nil)
-            print("is comment empty")
-            print(((📊.comment ?? "").isEmpty))
+            //comment
             if(!(📊.comment ?? "").isEmpty) {
-                print("inside if")
-                let refComments = refPlace.childByAppendingPath("Comments")
-                refComments.childByAutoId().setValue(📊.comment)
+                if(📌.comments == nil) {
+                    📌.comments = []
+                }
+                📌.comments.append(📊.comment)
             }
-            print("is image nil")
-            print(📊.image == nil)
-
+            
+            //image
             if(📊.image != nil) {
                 let jpeg: NSData = UIImageJPEGRepresentation(📊.image, 0.3)!
                 let base64String: String = jpeg.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.EncodingEndLineWithLineFeed)
-                let quoteString = ["base64": base64String]
-                let refPhotos = refPlace.childByAppendingPath("Images")
-                let refBase54 = refPhotos.childByAutoId()
-                refBase54.setValue(quoteString)
+                if(📌.images == nil) {
+                    📌.images = []
+                }
+                📌.images.append(base64String)
             }
+            
+            refPlace.setValue(📌.placeAsDictionaty(), withCompletionBlock: {
+                (error:NSError?, ref:Firebase!) in
+                if (error == nil) {
+                    listener.successfulSave()
+                } else {
+                    print(error?.code)
+                }
+            })
+            
+            //old code
+//            refPlace.setValue(📌.placeAsDictionaty())
+//            if(!(📊.comment ?? "").isEmpty) {
+//                print("inside if")
+//                let refComments = refPlace.childByAppendingPath("Comments")
+//                refComments.childByAutoId().setValue(📊.comment)
+//            }
+//            print("is image nil")
+//            print(📊.image == nil)
+//
+//            if(📊.image != nil) {
+//                let jpeg: NSData = UIImageJPEGRepresentation(📊.image, 0.3)!
+//                let base64String: String = jpeg.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.EncodingEndLineWithLineFeed)
+//                let quoteString = ["base64": base64String]
+//                let refPhotos = refPlace.childByAppendingPath("Images")
+//                let refBase54 = refPhotos.childByAutoId()
+//                refBase54.setValue(quoteString)
+//            }
             
         })
     }

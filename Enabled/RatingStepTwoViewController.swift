@@ -20,6 +20,7 @@ class RatingStepTwoViewController: UIViewController, UIImagePickerControllerDele
 
     @IBOutlet weak var commentView: UITextView!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var stepOneController: RatingViewController!
     var ratingCard: RatingCard!
@@ -100,6 +101,24 @@ class RatingStepTwoViewController: UIViewController, UIImagePickerControllerDele
         }
     }
     
+    @IBAction func saveRatingToFirebase(sender: AnyObject) {
+        activityIndicator.startAnimating()
+        
+        if(commentView.text != nil){
+            ratingCard.comment = commentView.text
+        }
+        if(imageView.image != nil){
+            ratingCard.image = imageView.image
+        }
+        FirebaseRef.saveRatingToFirebase(self.ratingCard, listener: self)
+    }
+    
+    func successfulSave() {
+        activityIndicator.stopAnimating()
+        let mapViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MapViewController") as! MapViewController
+        self.navigationController?.pushViewController(mapViewController, animated: true)
+    }
+    
     func noCamera(){
         let alertVC = UIAlertController(
             title: "No Camera",
@@ -129,15 +148,5 @@ class RatingStepTwoViewController: UIViewController, UIImagePickerControllerDele
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         dismissViewControllerAnimated(true,
             completion: nil)
-    }
-
-    @IBAction func saveRatingToFirebase(sender: AnyObject) {
-        if(commentView.text != nil){
-            ratingCard.comment = commentView.text
-        }
-        if(imageView.image != nil){
-            ratingCard.image = imageView.image
-        }
-        FirebaseRef.saveRatingToFirebase(self.ratingCard, listener: self)
     }
 }

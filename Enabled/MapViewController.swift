@@ -71,7 +71,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
     }
     
     override func viewWillAppear(animated: Bool) {
-        //Your app should be a good citizen of battery life and memory. To preserve battery life and memory usage, you should only synchronize data when the view is visible.
+        viewMap.animateToZoom(13.0)
+        viewMap.addObserver(self, forKeyPath: "myLocation", options: NSKeyValueObservingOptions.New , context: nil)
+        //searchResultController = SearchResultController()
+        //searchResultController.delegate = self  
     }
     
     override func viewWillDisappear(animated: Bool) {

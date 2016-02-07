@@ -10,7 +10,7 @@
         <!--Map View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="MapViewController" customModule="Enabled" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MapViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vXZ-lx-hvc" customClass="MapViewController" customModule="Enabled" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -43,7 +43,7 @@
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="LF0-KK-2f7">
                         <barButtonItem key="leftBarButtonItem" image="Image" id="dRG-Rb-Tr6"/>
-                        <barButtonItem key="rightBarButtonItem" image="Find" id="TEo-Yw-JOp">
+                        <barButtonItem key="rightBarButtonItem" image="Search" id="TEo-Yw-JOp">
                             <connections>
                                 <action selector="searchNearbyPlaces:" destination="vXZ-lx-hvc" id="t68-A3-Qcp"/>
                             </connections>
@@ -453,6 +453,10 @@
                                     <action selector="takePhoto:" destination="50u-J0-BgC" eventType="touchUpInside" id="uFd-OF-zWj"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="MDJ-9d-Qab">
+                                <rect key="frame" x="282" y="281" width="37" height="37"/>
+                                <color key="color" red="1" green="0.49803921569999998" blue="0.0" alpha="0.93999999999999995" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -471,7 +475,9 @@
                             <constraint firstItem="pvc-pH-SmE" firstAttribute="top" secondItem="tUt-x4-FRm" secondAttribute="bottom" constant="132" id="cBQ-N3-evf"/>
                             <constraint firstAttribute="leadingMargin" secondItem="Dj4-uY-6mS" secondAttribute="leading" id="dQG-9a-4VP"/>
                             <constraint firstItem="sCJ-Ok-x1C" firstAttribute="top" secondItem="pvc-pH-SmE" secondAttribute="bottom" constant="100" id="dle-aM-RyE"/>
+                            <constraint firstItem="MDJ-9d-Qab" firstAttribute="centerX" secondItem="fAx-IC-HVM" secondAttribute="centerX" id="gKT-rj-7eT"/>
                             <constraint firstItem="wfd-Xp-Cta" firstAttribute="top" secondItem="sCJ-Ok-x1C" secondAttribute="bottom" constant="71" id="lkJ-n5-L4J"/>
+                            <constraint firstItem="MDJ-9d-Qab" firstAttribute="centerY" secondItem="fAx-IC-HVM" secondAttribute="centerY" id="pRw-sz-ugL"/>
                             <constraint firstItem="pvc-pH-SmE" firstAttribute="top" secondItem="tZG-eh-uS0" secondAttribute="bottom" constant="18" id="rJN-aq-IzA"/>
                             <constraint firstItem="tZG-eh-uS0" firstAttribute="leading" secondItem="fAx-IC-HVM" secondAttribute="leadingMargin" id="sbl-xk-PK9"/>
                             <constraint firstItem="Dj4-uY-6mS" firstAttribute="top" secondItem="pvc-pH-SmE" secondAttribute="bottom" constant="8" id="teV-AJ-QBL"/>
@@ -482,6 +488,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="z2G-Ws-Hge"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="MDJ-9d-Qab" id="u6S-08-dJi"/>
                         <outlet property="commentView" destination="pvc-pH-SmE" id="bBP-fF-8Ow"/>
                         <outlet property="imageView" destination="sCJ-Ok-x1C" id="cnN-Z9-QOL"/>
                     </connections>
@@ -518,6 +525,7 @@
     <resources>
         <image name="Find" width="25" height="25"/>
         <image name="Image" width="31" height="40"/>
+        <image name="Search" width="50" height="50"/>
         <image name="camera" width="64" height="64"/>
         <image name="gallery" width="64" height="64"/>
     </resources>
