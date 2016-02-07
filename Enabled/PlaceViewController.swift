@@ -27,6 +27,14 @@ class PlaceViewController: UIViewController {
         infoView.text = infoString
         // Do any additional setup after loading the view.
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "RateSegue" {
+            let controller = segue.destinationViewController as! RatingViewController
+            controller.ratingCard = RatingCard()
+            controller.ratingCard.placeID = self.place.ID
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

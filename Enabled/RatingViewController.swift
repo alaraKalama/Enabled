@@ -30,7 +30,7 @@ class RatingViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.ratingCard = RatingCard()
+        //self.ratingCard = RatingCard()
         self.accessPicker.delegate = self
         self.accessPicker.dataSource = self
         self.wcPicker.delegate = self
@@ -45,9 +45,6 @@ class RatingViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        print("step 1 prepareForSegue")
-        print(segue)
-        print(sender)
         if segue.identifier == "RatingStepSegue" {
             print("Inside")
             let controller = segue.destinationViewController as! RatingStepTwoViewController
@@ -89,10 +86,28 @@ class RatingViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if(pickerView.tag == 0) {
-            accessPick = row
+            switch(row) {
+            case 0:
+                accessPick = 0
+            case 1:
+                accessPick = 35
+            case 2:
+                accessPick = 75
+            case 3:
+                accessPick = 100
+            default: break
+            }
         }
         else {
-            WC_Pick = row
+            switch(row) {
+            case 0:
+                WC_Pick = 0
+            case 1:
+                WC_Pick = 50
+            case 2:
+                WC_Pick = 100
+            default: break
+            }
         }
     }
 }

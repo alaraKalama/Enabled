@@ -16,7 +16,8 @@ class RatingStepTwoViewController: UIViewController, UIImagePickerControllerDele
    
     let picker = UIImagePickerController()
     var delegate: RatingStepTwoDelegate? = nil
-    
+    var FirebaseRef: FirebaseTasks!
+
     @IBOutlet weak var commentView: UITextView!
     @IBOutlet weak var imageView: UIImageView!
     
@@ -33,6 +34,10 @@ class RatingStepTwoViewController: UIViewController, UIImagePickerControllerDele
                 self.commentView.text = ratingCard.comment
             }
         }
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        FirebaseRef = FirebaseTasks.init()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -94,7 +99,6 @@ class RatingStepTwoViewController: UIViewController, UIImagePickerControllerDele
             noCamera()
         }
     }
-
     
     func noCamera(){
         let alertVC = UIAlertController(
@@ -125,5 +129,15 @@ class RatingStepTwoViewController: UIViewController, UIImagePickerControllerDele
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         dismissViewControllerAnimated(true,
             completion: nil)
+    }
+
+    @IBAction func saveRatingToFirebase(sender: AnyObject) {
+        if(commentView.text != nil){
+            ratingCard.comment = commentView.text
+        }
+        if(imageView.image != nil){
+            ratingCard.image = imageView.image
+        }
+        FirebaseRef.saveRatingToFirebase(self.ratingCard, listener: self)
     }
 }

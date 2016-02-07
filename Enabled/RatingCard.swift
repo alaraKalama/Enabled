@@ -9,8 +9,9 @@
 import UIKit
 
 class RatingCard: NSObject {
-    var accessibilityRating: Int!
-    var WC_Rating: Int!
+    var placeID: String!
+    var accessibilityRating: Int?
+    var WC_Rating: Int?
     var comment: String!
     var image: UIImage!
 }
