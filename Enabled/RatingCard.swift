@@ -12,5 +12,5 @@ class RatingCard: NSObject {
     var accessibilityRating: Int!
     var WC_Rating: Int!
     var comment: String!
-    var imageBase64: String!
+    var image: UIImage!
 }

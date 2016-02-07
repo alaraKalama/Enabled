@@ -12,8 +12,9 @@ protocol RatingStepTwoDelegate {
     func ControllerDidFinish(controller: RatingStepTwoViewController, ratingCard: RatingCard)
 }
 
-class RatingStepTwoViewController: UIViewController {
+class RatingStepTwoViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
    
+    let picker = UIImagePickerController()
     var delegate: RatingStepTwoDelegate? = nil
     
     @IBOutlet weak var commentView: UITextView!
@@ -22,10 +23,11 @@ class RatingStepTwoViewController: UIViewController {
     var stepOneController: RatingViewController!
     var ratingCard: RatingCard!
     var comment: String!
-    var imageBase64: String!
+    var pickedImage: UIImage!
     
     override func viewDidLoad() {
         print("step 2 viewDidLoad")
+        picker.delegate = self
         if(ratingCard != nil) {
             if(ratingCard.comment != nil) {
                 self.commentView.text = ratingCard.comment
@@ -40,12 +42,16 @@ class RatingStepTwoViewController: UIViewController {
             if(ratingCard.comment != nil) {
                 self.commentView.text = ratingCard.comment
             }
+            if(ratingCard.image != nil) {
+                self.imageView.image = ratingCard.image
+            }
         }
     }
     
     override func viewWillDisappear(animated: Bool) {
         print("step 2 viewWillDisappear")
         ratingCard.comment = commentView.text
+        ratingCard.image = pickedImage
         print(ratingCard)
         if(delegate != nil) {
             delegate!.ControllerDidFinish(self, ratingCard: self.ratingCard)
@@ -65,5 +71,59 @@ class RatingStepTwoViewController: UIViewController {
         }
         
     }
+    
+    @IBAction func photoFromLibrary(sender: UIButton) {
+        picker.allowsEditing = true
+        picker.sourceType = .PhotoLibrary
+        picker.modalPresentationStyle = .Popover
+        presentViewController(picker,
+            animated: true,
+            completion: nil)
+    }
+    
+    @IBAction func takePhoto(sender: AnyObject) {
+        if UIImagePickerController.availableCaptureModesForCameraDevice(.Rear) != nil {
+            picker.allowsEditing = true
+            picker.sourceType = UIImagePickerControllerSourceType.Camera
+            picker.cameraCaptureMode = .Photo
+            picker.modalPresentationStyle = .FullScreen
+            presentViewController(picker,
+                animated: true,
+                completion: nil)
+        } else {
+            noCamera()
+        }
+    }
 
+    
+    func noCamera(){
+        let alertVC = UIAlertController(
+            title: "No Camera",
+            message: "Sorry, this device has no camera",
+            preferredStyle: .Alert)
+        let okAction = UIAlertAction(
+            title: "OK",
+            style:.Default,
+            handler: nil)
+        alertVC.addAction(okAction)
+        presentViewController(
+            alertVC,
+            animated: true,
+            completion: nil)
+    }
+    
+    func imagePickerController(
+        picker: UIImagePickerController,
+        didFinishPickingMediaWithInfo info: [String : AnyObject])
+    {
+        self.pickedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        imageView.contentMode = .ScaleAspectFit
+        imageView.image = pickedImage
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        dismissViewControllerAnimated(true,
+            completion: nil)
+    }
 }
