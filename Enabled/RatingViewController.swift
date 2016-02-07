@@ -46,7 +46,8 @@ class RatingViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "RatingStepOneSegue" {
-            //let controller = segue.destinationViewController as! 
+            let controller = segue.destinationViewController as! RatingStepTwoViewController
+            controller.ratingCard = self.ratingCard
         }
     }
     

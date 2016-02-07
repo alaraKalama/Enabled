@@ -1287,11 +1287,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Enabled/RatingStepTwoViewController.swift"
-            timestampString = "476508345.60401"
+            timestampString = "476535687.49428"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "16"
-            endingLineNumber = "16">
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "RatingStepTwoViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
