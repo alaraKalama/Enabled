@@ -18,6 +18,8 @@ class Place: NSObject {
     var formattedAddress: String!
     var types: [AnyObject]!
     var numberOfVoter: Int!
+    var sumOfAccessibilityVote: Int!
+    var sumOfWcVote: Int!
     var accessibilityLevel: Float!
     var WC_Access: Float!
     
@@ -33,6 +35,8 @@ class Place: NSObject {
         place.longitude = snap.value["longitude"] as? CLLocationDegrees
         place.formattedAddress = snap.value["formattedAddress"] as? String
         place.numberOfVoter = snap.value["numberOfVoter"] as? Int
+        place.sumOfAccessibilityVote = snap.value["sumOfAccessibilityVote"] as? Int
+        place.sumOfWcVote = snap.value["sumOfWcVote"] as? Int
         place.accessibilityLevel = snap.value["accessibilityLevel"] as? Float
         place.WC_Access = snap.value["WC_Access"] as? Float
         //TODO - work with types
@@ -58,6 +62,8 @@ class Place: NSObject {
         dict.setValue(self.longitude, forKey: "longitude")
         dict.setValue(self.formattedAddress, forKey: "formattedAddress")
         dict.setValue(self.numberOfVoter, forKey: "numberOfVoter")
+        dict.setValue(self.sumOfAccessibilityVote, forKey: "sumOfAccessibilityVote")
+        dict.setValue(self.sumOfWcVote, forKey: "sumOfWcVote")
         dict.setValue(self.accessibilityLevel, forKey: "accessibilityLevel")
         dict.setValue(self.WC_Access, forKey: "WC_Access")
         dict.setValue(self.types, forKey: "types")

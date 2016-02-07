@@ -299,10 +299,10 @@
             </objects>
             <point key="canvasLocation" x="2537" y="1096"/>
         </scene>
-        <!--View Controller-->
+        <!--Rating Step Two View Controller-->
         <scene sceneID="Tp1-iq-ZKZ">
             <objects>
-                <viewController id="50u-J0-BgC" sceneMemberID="viewController">
+                <viewController id="50u-J0-BgC" customClass="RatingStepTwoViewController" customModule="Enabled" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tUt-x4-FRm"/>
                         <viewControllerLayoutGuide type="bottom" id="wfd-Xp-Cta"/>
@@ -415,6 +415,10 @@
                             <constraint firstItem="sCJ-Ok-x1C" firstAttribute="centerX" secondItem="fAx-IC-HVM" secondAttribute="centerX" id="ytC-61-UNI"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="comment" destination="pvc-pH-SmE" id="E8f-Sq-l11"/>
+                        <outlet property="image" destination="sCJ-Ok-x1C" id="zUp-pT-AYG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QgA-Fy-vFH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
