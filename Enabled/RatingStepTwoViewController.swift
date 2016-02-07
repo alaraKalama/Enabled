@@ -8,12 +8,49 @@
 
 import UIKit
 
+protocol RatingStepTwoDelegate {
+    func ControllerDidFinish(controller: RatingStepTwoViewController, ratingCard: RatingCard)
+}
+
 class RatingStepTwoViewController: UIViewController {
    
-    @IBOutlet weak var comment: UITextView!
+    var delegate: RatingStepTwoDelegate? = nil
+    
+    @IBOutlet weak var commentView: UITextView!
     @IBOutlet weak var imageView: UIImageView!
     
+    var stepOneController: RatingViewController!
     var ratingCard: RatingCard!
+    var comment: String!
+    var imageBase64: String!
+    
+    override func viewDidLoad() {
+        print("step 2 viewDidLoad")
+        if(ratingCard != nil) {
+            if(ratingCard.comment != nil) {
+                self.commentView.text = ratingCard.comment
+            }
+        }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        print("step 2 viewWillAppear")
+        print(ratingCard)
+        if(ratingCard != nil) {
+            if(ratingCard.comment != nil) {
+                self.commentView.text = ratingCard.comment
+            }
+        }
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        print("step 2 viewWillDisappear")
+        ratingCard.comment = commentView.text
+        print(ratingCard)
+        if(delegate != nil) {
+            delegate!.ControllerDidFinish(self, ratingCard: self.ratingCard)
+        }
+    }
     
     override func willRotateToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
         if (toInterfaceOrientation.isLandscape) {

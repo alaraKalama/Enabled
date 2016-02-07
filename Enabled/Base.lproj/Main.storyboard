@@ -241,7 +241,7 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="ratePlace:" destination="AJc-mo-ki6" eventType="touchUpInside" id="k5z-a7-iFl"/>
-                                    <segue destination="50u-J0-BgC" kind="push" id="sSd-NY-BAC"/>
+                                    <segue destination="50u-J0-BgC" kind="show" identifier="RatingStepSegue" id="5aw-K1-DTW"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZUS-ny-A0d">
@@ -466,13 +466,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="z2G-Ws-Hge"/>
                     <connections>
-                        <outlet property="comment" destination="pvc-pH-SmE" id="E8f-Sq-l11"/>
+                        <outlet property="commentView" destination="pvc-pH-SmE" id="bBP-fF-8Ow"/>
                         <outlet property="imageView" destination="sCJ-Ok-x1C" id="cnN-Z9-QOL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QgA-Fy-vFH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2861" y="308"/>
+            <point key="canvasLocation" x="2825" y="313"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7X8-QE-bng">

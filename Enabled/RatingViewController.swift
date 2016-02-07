@@ -16,7 +16,7 @@ import UIKit
 //2 - Yes
 //1 - Hardly
 //0 - No
-class RatingViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class RatingViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, RatingStepTwoDelegate {
 
     @IBOutlet weak var accessPicker: UIPickerView!
     @IBOutlet weak var wcPicker: UIPickerView!
@@ -45,10 +45,24 @@ class RatingViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "RatingStepOneSegue" {
+        print("step 1 prepareForSegue")
+        print(segue)
+        print(sender)
+        if segue.identifier == "RatingStepSegue" {
+            print("Inside")
             let controller = segue.destinationViewController as! RatingStepTwoViewController
+            controller.delegate = self
+            self.ratingCard.accessibilityRating = accessPick
+            self.ratingCard.WC_Rating = WC_Pick
+            print(ratingCard)
             controller.ratingCard = self.ratingCard
         }
+    }
+    
+    func ControllerDidFinish(controller: RatingStepTwoViewController, ratingCard: RatingCard) {
+        print("step 1 ControllerDidFinish")
+        print(ratingCard)
+        self.ratingCard = ratingCard
     }
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
