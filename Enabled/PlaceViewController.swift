@@ -35,7 +35,7 @@ class PlaceViewController: UIViewController {
         else {
             maxIndex = place.images.count
         }
-        //loadImageList()
+        loadImageList()
         
         let swipeRight = UISwipeGestureRecognizer(target: self, action: "swiped:")
         swipeRight.direction = UISwipeGestureRecognizerDirection.Right
@@ -48,13 +48,13 @@ class PlaceViewController: UIViewController {
     func loadImageList() {
         if(maxIndex > 0) {
             for(var i = 0; i < self.maxIndex; i++) {
-                var base64 = place.images[i] as! String
+                var base64 = place.images[i] as! NSString
                 //let replaced = base64.stringByReplacingOccurrencesOfString("data:image/png;base64,", withString: "")
                 print(base64)
                 if let range = base64.rangeOfString("data:image/png;base64,", options: .AnchoredSearch)  {
                     base64.removeRange(range)
                 }
-                let decodedData = NSData(base64EncodedString: base64, options: NSDataBase64DecodingOptions(rawValue: 0))
+                let decodedData = NSData(base64EncodedString: base64 as String, options: [])
                 if let decodedImage = UIImage(data: decodedData!) {
                     self.imageList.append(decodedImage)
                 }
