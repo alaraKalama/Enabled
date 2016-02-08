@@ -17,6 +17,9 @@ class PlaceViewController: UIViewController {
     @IBOutlet var infoView: UITextView!
     
     var place: Place!
+    var imageList: [AnyObject]!
+    var imageIndex: Int = 0
+    var maxIndex: Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +28,61 @@ class PlaceViewController: UIViewController {
         self.WCAccess.text = String(format: "%.1f%%", place.WC_Access)
         let infoString = "Address: \(place.formattedAddress)"
         infoView.text = infoString
-        // Do any additional setup after loading the view.
+        
+        if(place.images == nil) {
+            maxIndex = 0
+        }
+        else {
+            maxIndex = place.images.count
+        }
+        //loadImageList()
+        
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: "swiped:")
+        swipeRight.direction = UISwipeGestureRecognizerDirection.Right
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: "swiped:")
+        swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
+        self.imageView.addGestureRecognizer(swipeLeft)
+        self.imageView.addGestureRecognizer(swipeRight)
+    }
+    
+    func loadImageList() {
+        if(maxIndex > 0) {
+            for(var i = 0; i < self.maxIndex; i++) {
+                var base64 = place.images[i] as! String
+                //let replaced = base64.stringByReplacingOccurrencesOfString("data:image/png;base64,", withString: "")
+                print(base64)
+                if let range = base64.rangeOfString("data:image/png;base64,", options: .AnchoredSearch)  {
+                    base64.removeRange(range)
+                }
+                let decodedData = NSData(base64EncodedString: base64, options: NSDataBase64DecodingOptions(rawValue: 0))
+                if let decodedImage = UIImage(data: decodedData!) {
+                    self.imageList.append(decodedImage)
+                }
+            }
+        }
+    }
+    
+    func swiped(gesture: UIGestureRecognizer) {
+        if let swipeGesture = gesture as? UISwipeGestureRecognizer {
+            switch swipeGesture.direction {
+            case UISwipeGestureRecognizerDirection.Right:
+                imageIndex--
+                if(imageIndex < 0) {
+                    imageIndex = maxIndex
+                }
+                print("swiped right")
+            case UISwipeGestureRecognizerDirection.Left:
+                imageIndex++
+                if imageIndex > maxIndex {
+                    imageIndex = 0
+                }
+                print("swiped left")
+            default:
+                print("default")
+            }
+            self.imageView = imageList[imageIndex] as! UIImageView
+            //set the image
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -39,18 +96,6 @@ class PlaceViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    @IBAction func ratePlace(sender: AnyObject) {
-        
-    }
-    
-    @IBAction func tappedOnImage(sender: AnyObject) {
-        print("tapped on image")
-    }
-    
-    @IBAction func slideOnImage(sender: AnyObject) {
-        print("slide on image")
     }
     
     override func willRotateToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {

@@ -72,6 +72,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
     
     override func viewWillAppear(animated: Bool) {
         viewMap.animateToZoom(13.0)
+        //viewMap.moveCamera(<#T##update: GMSCameraUpdate!##GMSCameraUpdate!#>)
         viewMap.addObserver(self, forKeyPath: "myLocation", options: NSKeyValueObservingOptions.New , context: nil)
         //searchResultController = SearchResultController()
         //searchResultController.delegate = self  
@@ -206,6 +207,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
                 self.viewMap.clear()
                 self.currentGMSPlacePicked = place
                 let p = Place.PlaceFromGMSPlace(self.currentGMSPlacePicked)
+                self.currentPlacePicked = p
                 self.FirebaseRef.placeExistsInFirebase(p, listener: self)
                 let coordinates = CLLocationCoordinate2DMake(place.coordinate.latitude, place.coordinate.longitude)
                 let marker = GMSMarker(position: coordinates)

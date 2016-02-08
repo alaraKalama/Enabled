@@ -16,7 +16,7 @@ class FirebaseTasks: NSObject {
     
     
     override init() {
-        root = Firebase(url: "https://enabled-moga-sam.firebaseio.com/")
+        root = Firebase(url: "https://onwheels.firebaseio.com/")
         places = root.childByAppendingPath("Places")
     }
     
@@ -66,8 +66,9 @@ class FirebaseTasks: NSObject {
             
             //image
             if(📊.image != nil) {
-                let jpeg: NSData = UIImageJPEGRepresentation(📊.image, 0.3)!
-                let base64String: String = jpeg.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.EncodingEndLineWithLineFeed)
+                let imageResized = self.resizeImage(📊.image, targetSize: CGSizeMake(200.0, 200.0))
+                let data: NSData = UIImagePNGRepresentation(imageResized)!
+                let base64String: NSString = data.base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
                 if(📌.images == nil) {
                     📌.images = []
                 }
@@ -82,27 +83,33 @@ class FirebaseTasks: NSObject {
                     print(error?.code)
                 }
             })
-            
-            //old code
-//            refPlace.setValue(📌.placeAsDictionaty())
-//            if(!(📊.comment ?? "").isEmpty) {
-//                print("inside if")
-//                let refComments = refPlace.childByAppendingPath("Comments")
-//                refComments.childByAutoId().setValue(📊.comment)
-//            }
-//            print("is image nil")
-//            print(📊.image == nil)
-//
-//            if(📊.image != nil) {
-//                let jpeg: NSData = UIImageJPEGRepresentation(📊.image, 0.3)!
-//                let base64String: String = jpeg.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.EncodingEndLineWithLineFeed)
-//                let quoteString = ["base64": base64String]
-//                let refPhotos = refPlace.childByAppendingPath("Images")
-//                let refBase54 = refPhotos.childByAutoId()
-//                refBase54.setValue(quoteString)
-//            }
-            
         })
+    }
+    
+    func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
+        let size = image.size
+        
+        let widthRatio  = targetSize.width  / image.size.width
+        let heightRatio = targetSize.height / image.size.height
+        
+        // Figure out what our orientation is, and use that to form the rectangle
+        var newSize: CGSize
+        if(widthRatio > heightRatio) {
+            newSize = CGSizeMake(size.width * heightRatio, size.height * heightRatio)
+        } else {
+            newSize = CGSizeMake(size.width * widthRatio,  size.height * widthRatio)
+        }
+        
+        // This is the rect that we've calculated out and this is what is actually used below
+        let rect = CGRectMake(0, 0, newSize.width, newSize.height)
+        
+        // Actually do the resizing to the rect using the ImageContext stuff
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
+        image.drawInRect(rect)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage
     }
     
     func findAverage(sum: Int, num: Int) -> Float {
