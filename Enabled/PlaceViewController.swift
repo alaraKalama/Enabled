@@ -51,9 +51,9 @@ class PlaceViewController: UIViewController {
                 var base64 = place.images[i] as! NSString
                 //let replaced = base64.stringByReplacingOccurrencesOfString("data:image/png;base64,", withString: "")
                 print(base64)
-                if let range = base64.rangeOfString("data:image/png;base64,", options: .AnchoredSearch)  {
-                    base64.removeRange(range)
-                }
+//                if let range = base64.rangeOfString("data:image/png;base64,", options: .AnchoredSearch)  {
+//                    base64.removeRange(range)
+//                }
                 let decodedData = NSData(base64EncodedString: base64 as String, options: [])
                 if let decodedImage = UIImage(data: decodedData!) {
                     self.imageList.append(decodedImage)
