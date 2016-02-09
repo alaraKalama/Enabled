@@ -15,6 +15,7 @@ class PlaceViewController: UIViewController {
     @IBOutlet var WCAccess: UILabel!
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var infoView: UITextView!
+    @IBOutlet weak var votersCountInfoLabel: UITextView!
     
     var place: Place!
     var imageList: [AnyObject]!
@@ -28,14 +29,24 @@ class PlaceViewController: UIViewController {
         self.WCAccess.text = String(format: "%.1f%%", place.WC_Access)
         let infoString = "Address: \(place.formattedAddress)"
         infoView.text = infoString
+        if(place.numberOfVoter == 1) {
+            votersCountInfoLabel.text = "Rating based on \(place.numberOfVoter) vote"
+        } else {
+            votersCountInfoLabel.text = "Rating based on \(place.numberOfVoter) votes"
+        }
         
         if(place.images == nil) {
             maxIndex = 0
         }
-        else {
-            maxIndex = place.images.count
+        else if(place.images.count == 0) {
+            maxIndex = 0
         }
-        loadImageList()
+        else {
+            imageList = []
+            maxIndex = place.images.count - 1
+            loadImageList()
+            imageView.image = imageList[0] as! UIImage
+        }
         
         let swipeRight = UISwipeGestureRecognizer(target: self, action: "swiped:")
         swipeRight.direction = UISwipeGestureRecognizerDirection.Right
@@ -46,17 +57,15 @@ class PlaceViewController: UIViewController {
     }
     
     func loadImageList() {
-        if(maxIndex > 0) {
-            for(var i = 0; i < self.maxIndex; i++) {
-                var base64 = place.images[i] as! NSString
-                //let replaced = base64.stringByReplacingOccurrencesOfString("data:image/png;base64,", withString: "")
-                print(base64)
-//                if let range = base64.rangeOfString("data:image/png;base64,", options: .AnchoredSearch)  {
-//                    base64.removeRange(range)
-//                }
-                let decodedData = NSData(base64EncodedString: base64 as String, options: [])
-                if let decodedImage = UIImage(data: decodedData!) {
-                    self.imageList.append(decodedImage)
+        if(maxIndex >= 0) {
+            for(var i = 0; i <= self.maxIndex; i++) {
+                let base64 = place.images[i] as! NSString
+                //print(base64)
+                if let decodedData = NSData(base64EncodedString: base64 as String, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters) {
+                    if(decodedData.length > 0) {
+                        let image = UIImage(data: decodedData)!
+                        self.imageList.append(image)
+                    }
                 }
             }
         }
@@ -80,7 +89,7 @@ class PlaceViewController: UIViewController {
             default:
                 print("default")
             }
-            self.imageView = imageList[imageIndex] as! UIImageView
+            self.imageView.image = imageList[imageIndex] as! UIImage
             //set the image
         }
     }
@@ -113,15 +122,4 @@ class PlaceViewController: UIViewController {
         }
         
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

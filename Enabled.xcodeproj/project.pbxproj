@@ -22,6 +22,7 @@
 		263692351C60159100167EBE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 263692341C60159100167EBE /* QuartzCore.framework */; };
 		263692371C60159800167EBE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 263692361C60159800167EBE /* SystemConfiguration.framework */; };
 		266BB5F91C616796000143FB /* SearchResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266BB5F81C616796000143FB /* SearchResultController.swift */; };
+		26817EE51C6866E400F8B0D3 /* WebViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26817EE41C6866E400F8B0D3 /* WebViewViewController.swift */; };
 		268C69451C64C3A9000900E2 /* PlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268C69441C64C3A9000900E2 /* PlaceViewController.swift */; };
 		268C69471C64C6D5000900E2 /* RatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268C69461C64C6D5000900E2 /* RatingViewController.swift */; };
 		26919C251C66ED4700AA3A49 /* RatingStepTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26919C241C66ED4700AA3A49 /* RatingStepTwoViewController.swift */; };
@@ -78,6 +79,7 @@
 		266BB5F81C616796000143FB /* SearchResultController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultController.swift; sourceTree = "<group>"; };
 		266BB5FA1C6184A8000143FB /* bg-BG */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "bg-BG"; path = "bg-BG.lproj/Main.strings"; sourceTree = "<group>"; };
 		266BB5FB1C6184A8000143FB /* bg-BG */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "bg-BG"; path = "bg-BG.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		26817EE41C6866E400F8B0D3 /* WebViewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewViewController.swift; sourceTree = "<group>"; };
 		268C69441C64C3A9000900E2 /* PlaceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceViewController.swift; sourceTree = "<group>"; };
 		268C69461C64C6D5000900E2 /* RatingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingViewController.swift; sourceTree = "<group>"; };
 		26919C241C66ED4700AA3A49 /* RatingStepTwoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingStepTwoViewController.swift; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 				268C69441C64C3A9000900E2 /* PlaceViewController.swift */,
 				268C69461C64C6D5000900E2 /* RatingViewController.swift */,
 				26919C241C66ED4700AA3A49 /* RatingStepTwoViewController.swift */,
+				26817EE41C6866E400F8B0D3 /* WebViewViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -445,7 +448,7 @@
 		};
 		77872B8AE09E7B8F2D797873 /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (
@@ -480,6 +483,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26817EE51C6866E400F8B0D3 /* WebViewViewController.swift in Sources */,
 				268C69451C64C3A9000900E2 /* PlaceViewController.swift in Sources */,
 				266BB5F91C616796000143FB /* SearchResultController.swift in Sources */,
 				26E1B3D11C667533009F5C24 /* SpeechTask.m in Sources */,
