@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoogleMaps
 import Firebase
 
 class Place: NSObject {
